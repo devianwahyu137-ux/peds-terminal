@@ -1,0 +1,227 @@
+/* ── Google Fonts — must be first ── */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  --color-terminal-bg: #050505;
+  --color-terminal-surface: #0a0a0a;
+  --color-terminal-panel: #0d0d0d;
+  --color-accent-blue: #3B82F6;
+  --color-accent-purple: #A855F7;
+  --color-accent-emerald: #10B981;
+  --color-accent-amber: #F59E0B;
+  --color-accent-rose: #F43F5E;
+  --color-border-dim: rgba(255, 255, 255, 0.06);
+  --color-border-subtle: rgba(255, 255, 255, 0.1);
+  --color-text-primary: #E5E7EB;
+  --color-text-secondary: #6B7280;
+  --color-text-muted: #374151;
+
+  --font-mono: "JetBrains Mono", "Fira Code", "SF Mono", monospace;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* ── Global Reset ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-terminal-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar Styling ── */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ── Glassmorphism Panels ── */
+.glass {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 0.5px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-elevated {
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Neon Glow Effects ── */
+.neon-blue {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15),
+              0 0 40px rgba(59, 130, 246, 0.05);
+}
+
+.neon-purple {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.15),
+              0 0 40px rgba(168, 85, 247, 0.05);
+}
+
+.neon-emerald {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.15),
+              0 0 40px rgba(16, 185, 129, 0.05);
+}
+
+/* ── Thin Borders ── */
+.thin-border {
+  border: 0.5px solid rgba(255, 255, 255, 0.06);
+}
+
+.thin-border-b {
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.06);
+}
+
+.thin-border-r {
+  border-right: 0.5px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ── Section Headers ── */
+.section-header {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+/* ── Gradient Text ── */
+.gradient-text-blue {
+  background: linear-gradient(135deg, #3B82F6, #60A5FA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-purple {
+  background: linear-gradient(135deg, #A855F7, #C084FC);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-emerald {
+  background: linear-gradient(135deg, #10B981, #34D399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-brand {
+  background: linear-gradient(135deg, #3B82F6 0%, #A855F7 50%, #10B981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Pulse Animation ── */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes neon-pulse {
+  0%, 100% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.6); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ── Data Input Styling ── */
+.input-terminal {
+  background: rgba(255, 255, 255, 0.03);
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-primary);
+  outline: none;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.input-terminal:focus {
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.1);
+}
+
+.input-terminal::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* ── Badge Styling ── */
+.badge {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.badge-high {
+  background: rgba(244, 63, 94, 0.15);
+  color: #F43F5E;
+  border: 0.5px solid rgba(244, 63, 94, 0.3);
+}
+
+.badge-l2 {
+  background: rgba(59, 130, 246, 0.12);
+  color: #60A5FA;
+  border: 0.5px solid rgba(59, 130, 246, 0.25);
+}
+
+.badge-ai {
+  background: rgba(168, 85, 247, 0.12);
+  color: #C084FC;
+  border: 0.5px solid rgba(168, 85, 247, 0.25);
+}
+
+.badge-rwa {
+  background: rgba(16, 185, 129, 0.12);
+  color: #34D399;
+  border: 0.5px solid rgba(16, 185, 129, 0.25);
+}
+
+.badge-defi {
+  background: rgba(245, 158, 11, 0.12);
+  color: #FBBF24;
+  border: 0.5px solid rgba(245, 158, 11, 0.25);
+}
+
+/* ── TradingView Widget Overrides ── */
+.tradingview-widget-container {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.tradingview-widget-container iframe {
+  width: 100% !important;
+  height: 100% !important;
+}
