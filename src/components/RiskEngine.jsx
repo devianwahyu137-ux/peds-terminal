@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 
 /* ═══════════════════════════════════════════
-   QUANT MATH — Pure JavaScript
+   QUANT MATH
    ═══════════════════════════════════════════ */
 
 const calcPositionSize = (equity, riskPct, entry, stopLoss) => {
@@ -106,7 +106,7 @@ const TechGaugeWidget = () => {
 };
 
 /* ═══════════════════════════════════════════
-   BITCOIN SENTIMENT — Richter Scale (Fear & Greed)
+   BITCOIN SENTIMENT (Richter Scale / Fear & Greed)
    ═══════════════════════════════════════════ */
 const BitcoinSentiment = () => {
   const [data, setData] = useState(null);
@@ -134,23 +134,20 @@ const BitcoinSentiment = () => {
       }
     };
     fetchSentiment();
-    // Refresh every 5 minutes
     const interval = setInterval(fetchSentiment, 300000);
     return () => { cancelled = true; clearInterval(interval); };
   }, []);
 
   const value = data?.value ?? 50;
 
-  // Determine color based on value — updated thresholds
   const getValueColor = (v) => {
-    if (v <= 44) return '#EF4444';       // Fear zone — red
-    if (v <= 55) return '#A1A1AA';       // Neutral zone — zinc/gray
-    return '#10B981';                    // Greed zone — emerald
+    if (v <= 44) return '#EF4444';
+    if (v <= 55) return '#A1A1AA';
+    return '#10B981';
   };
 
   const needleColor = getValueColor(value);
 
-  // Determine sentiment label
   const getZoneLabel = (v) => {
     if (v <= 44) return 'FEAR';
     if (v <= 55) return 'NEUTRAL';
@@ -164,17 +161,17 @@ const BitcoinSentiment = () => {
   };
 
   return (
-    <div className="flex flex-col gap-2 px-2 lg:px-3 py-2 lg:py-2.5">
+    <div className="flex flex-col gap-2 px-3 lg:px-3 py-2.5">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Activity size={13} className="text-accent-amber" />
-          <span className="font-mono text-[0.65rem] lg:text-[0.75rem] font-bold tracking-[0.12em] uppercase"
+          <span className="font-mono text-[10px] lg:text-[0.75rem] font-bold tracking-[0.12em] uppercase"
                 style={{ color: '#F7931A' }}>
             BTC SENTIMENT
           </span>
         </div>
-        <span className="font-mono text-[0.5rem] lg:text-[0.55rem] text-text-secondary">
+        <span className="font-mono text-[10px] lg:text-[0.55rem] text-text-secondary">
           FEAR &amp; GREED
         </span>
       </div>
@@ -189,7 +186,7 @@ const BitcoinSentiment = () => {
               className="w-3 h-3 border border-t-transparent rounded-full"
               style={{ borderColor: '#F7931A', borderTopColor: 'transparent' }}
             />
-            <span className="font-mono text-[0.6rem] text-text-secondary">FETCHING LIVE DATA...</span>
+            <span className="font-mono text-[10px] text-text-secondary">FETCHING LIVE DATA...</span>
           </div>
         </div>
       )}
@@ -197,16 +194,14 @@ const BitcoinSentiment = () => {
       {/* Error State */}
       {error && !data && (
         <div className="flex items-center justify-center py-3">
-          <span className="font-mono text-[0.6rem] text-accent-rose">SIGNAL LOST</span>
+          <span className="font-mono text-[10px] text-accent-rose">SIGNAL LOST</span>
         </div>
       )}
 
       {/* Richter Scale Gauge */}
       {(!loading || data) && !error && (
         <>
-          {/* Scale Visual */}
           <div className="relative w-full" style={{ height: '28px' }}>
-            {/* Track Background — gradient from red to green */}
             <div
               className="absolute top-1/2 -translate-y-1/2 w-full rounded-full overflow-hidden"
               style={{ height: '6px' }}
@@ -219,7 +214,6 @@ const BitcoinSentiment = () => {
               />
             </div>
 
-            {/* Center tick mark (50 = Neutral) */}
             <div
               className="absolute top-1/2 -translate-y-1/2"
               style={{
@@ -231,7 +225,6 @@ const BitcoinSentiment = () => {
               }}
             />
 
-            {/* Minor tick marks */}
             {[0, 25, 75, 100].map((tick) => (
               <div
                 key={tick}
@@ -246,17 +239,13 @@ const BitcoinSentiment = () => {
               />
             ))}
 
-            {/* Animated Needle */}
             <motion.div
               initial={{ left: '50%' }}
               animate={{ left: `${value}%` }}
               transition={{ type: 'spring', stiffness: 60, damping: 15, duration: 1.2 }}
               className="absolute top-1/2"
-              style={{
-                transform: 'translate(-50%, -50%)',
-              }}
+              style={{ transform: 'translate(-50%, -50%)' }}
             >
-              {/* Glow halo */}
               <div
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
                 style={{
@@ -265,7 +254,6 @@ const BitcoinSentiment = () => {
                   background: `radial-gradient(circle, ${needleColor}33 0%, transparent 70%)`,
                 }}
               />
-              {/* Needle line */}
               <div
                 className="absolute left-1/2 -translate-x-1/2"
                 style={{
@@ -277,7 +265,6 @@ const BitcoinSentiment = () => {
                   boxShadow: `0 0 6px ${needleColor}88`,
                 }}
               />
-              {/* Needle dot */}
               <div
                 className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
                 style={{
@@ -290,22 +277,20 @@ const BitcoinSentiment = () => {
             </motion.div>
           </div>
 
-          {/* Scale Labels */}
           <div className="flex items-center justify-between">
-            <span className="font-mono text-[0.5rem] text-accent-rose tracking-wider">FEAR</span>
-            <span className="font-mono text-[0.5rem] text-text-muted tracking-wider">NEUTRAL</span>
-            <span className="font-mono text-[0.5rem] text-accent-emerald tracking-wider">GREED</span>
+            <span className="font-mono text-[10px] text-accent-rose tracking-wider">FEAR</span>
+            <span className="font-mono text-[10px] text-text-muted tracking-wider">NEUTRAL</span>
+            <span className="font-mono text-[10px] text-accent-emerald tracking-wider">GREED</span>
           </div>
 
-          {/* Value Display */}
           <div className="flex items-center justify-center gap-2 mt-0.5">
             <div className="glass rounded-md px-3 py-1.5 flex items-center gap-2"
                  style={{ border: `0.5px solid ${needleColor}33` }}>
               <span className="font-mono text-sm lg:text-base font-bold" style={{ color: needleColor }}>
                 {value}
               </span>
-              <span className="font-mono text-[0.5rem] text-text-muted">—</span>
-              <span className="font-mono text-[0.55rem] lg:text-[0.65rem] font-semibold tracking-wider" style={{ color: needleColor }}>
+              <span className="font-mono text-[10px] text-text-muted">/</span>
+              <span className="font-mono text-[10px] lg:text-[0.65rem] font-semibold tracking-wider" style={{ color: needleColor }}>
                 {getZoneLabel(value) === getZoneSide(value)
                   ? getZoneLabel(value)
                   : `${getZoneLabel(value)} / ${getZoneSide(value)}`}
@@ -322,7 +307,6 @@ const BitcoinSentiment = () => {
    MAIN COMPONENT
    ═══════════════════════════════════════════ */
 const RiskEngine = () => {
-  /* ── Raw-string input state: allows empty fields & prevents leading zeros ── */
   const defaults = {
     equity: '10000',
     riskPct: '1',
@@ -335,7 +319,6 @@ const RiskEngine = () => {
   const [rawInputs, setRawInputs] = useState(() => {
     const stored = loadStorage(STORAGE_KEY, null);
     if (stored) {
-      // Convert legacy numeric storage to strings
       const converted = {};
       for (const k of Object.keys(defaults)) {
         converted[k] = stored[k] != null ? String(stored[k]) : defaults[k];
@@ -345,7 +328,6 @@ const RiskEngine = () => {
     return defaults;
   });
 
-  // Derive numeric values for calculations (empty / invalid → 0)
   const numericInputs = useMemo(() => {
     const out = {};
     for (const k of Object.keys(rawInputs)) {
@@ -366,9 +348,7 @@ const RiskEngine = () => {
   }, [numericInputs]);
 
   const update = (field, value) => {
-    // Allow empty string for clearing; strip leading zeros for whole-number part
     let cleaned = value;
-    // Strip leading zeros but keep "0.x" patterns and lone "0"
     if (cleaned !== '' && !/^\./.test(cleaned)) {
       cleaned = cleaned.replace(/^(-?)0+(\d)/, '$1$2');
     }
@@ -394,20 +374,20 @@ const RiskEngine = () => {
     <div className="h-auto lg:h-full flex flex-col overflow-visible lg:overflow-hidden">
       {/* ═══ 1. Risk-Quant Engine ═══ */}
       <div className="min-h-0 lg:flex-[5] flex flex-col overflow-hidden thin-border-b">
-        <div className="flex items-center justify-between px-2 lg:px-4 py-2 lg:py-2.5 thin-border-b flex-shrink-0">
+        <div className="flex items-center justify-between px-3 lg:px-4 py-2 lg:py-2.5 thin-border-b flex-shrink-0">
           <div className="flex items-center gap-2">
             <Calculator size={13} className="text-accent-blue" />
-            <span className="font-mono text-[0.65rem] lg:text-[0.75rem] font-bold tracking-[0.12em] text-accent-blue uppercase">
+            <span className="font-mono text-[10px] lg:text-[0.75rem] font-bold tracking-[0.12em] text-accent-blue uppercase">
               RISK-QUANT ENGINE
             </span>
           </div>
           <div className="flex items-center gap-1">
             <Target size={10} className="text-text-secondary" />
-            <span className="font-mono text-[0.5rem] lg:text-[0.55rem] text-text-secondary pr-2 lg:pr-4">POSITION SIZER</span>
+            <span className="font-mono text-[10px] lg:text-[0.55rem] text-text-secondary pr-2 lg:pr-4">POSITION SIZER</span>
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-2 lg:px-3 py-2 space-y-2 lg:space-y-2.5 min-h-0">
+        <div className="flex-1 overflow-y-auto px-3 lg:px-3 py-2 space-y-2 lg:space-y-2.5 min-h-0">
           {/* Position Inputs */}
           <div className="grid grid-cols-2 gap-1.5 lg:gap-2">
             <Field icon={<DollarSign size={10} />} label="EQUITY" value={rawInputs.equity} onChange={(v) => update('equity', v)} suffix="USD" />
@@ -433,48 +413,48 @@ const RiskEngine = () => {
 
           {/* Kelly / RoR Results */}
           <div className="glass rounded-lg p-2 lg:p-2.5 neon-purple">
-            <div className="grid grid-cols-2 gap-2 lg:gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="flex flex-col gap-0.5">
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 flex-wrap">
                   <Brain size={10} className="text-accent-purple" />
-                  <span className="font-mono text-[0.5rem] lg:text-[0.55rem] font-semibold text-white tracking-wider">KELLY CRITERION</span>
-                  <InfoTooltip text="Suggests the optimal percentage of capital to risk per trade to maximize long-term growth. Formula: (WinRate × RR − LossRate) / RR" />
+                  <span className="font-mono text-[10px] lg:text-[0.55rem] font-semibold text-white tracking-wider">KELLY CRITERION</span>
+                  <InfoTooltip text="Suggests the optimal percentage of capital to risk per trade to maximize long-term growth. Formula: (WinRate x RR - LossRate) / RR" />
                 </div>
-                <span className="font-mono text-base lg:text-lg font-bold text-accent-purple">
+                <span className="font-mono text-sm lg:text-lg font-bold text-accent-purple">
                   {(results.kelly * 100).toFixed(2)}%
                 </span>
-                <span className="font-mono text-[0.45rem] lg:text-[0.5rem] text-text-secondary">
+                <span className="font-mono text-[10px] lg:text-[0.5rem] text-text-secondary">
                   Half Kelly: {(results.kelly * 50).toFixed(2)}%
                 </span>
               </div>
               <div className="flex flex-col gap-0.5">
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 flex-wrap">
                   <AlertTriangle size={10} className="text-accent-amber" />
-                  <span className="font-mono text-[0.5rem] lg:text-[0.55rem] font-semibold text-white tracking-wider">RISK OF RUIN</span>
+                  <span className="font-mono text-[10px] lg:text-[0.55rem] font-semibold text-white tracking-wider">RISK OF RUIN</span>
                   <InfoTooltip text="The statistical probability of losing your entire trading account based on current strategy performance and risk units" />
                 </div>
-                <span className={`font-mono text-base lg:text-lg font-bold ${rorColor}`}>
+                <span className={`font-mono text-sm lg:text-lg font-bold ${rorColor}`}>
                   {rorDisplay}
                 </span>
-                <span className="font-mono text-[0.45rem] lg:text-[0.5rem] text-text-secondary">{rorLabel}</span>
+                <span className="font-mono text-[10px] lg:text-[0.5rem] text-text-secondary">{rorLabel}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ═══ 2. Technical Gauge — BITCOIN ONLY ═══ */}
+      {/* ═══ 2. Technical Gauge (BITCOIN ONLY) ═══ */}
       <div className="h-[300px] lg:h-auto lg:flex-[4] flex flex-col overflow-hidden thin-border-b min-h-0">
-        <div className="flex items-center justify-between px-2 lg:px-4 py-2 lg:py-2.5 thin-border-b flex-shrink-0">
+        <div className="flex items-center justify-between px-3 lg:px-4 py-2 lg:py-2.5 thin-border-b flex-shrink-0">
           <div className="flex items-center gap-2">
             <Gauge size={13} style={{ color: '#F7931A' }} />
-            <span className="font-mono text-[0.65rem] lg:text-[0.75rem] font-bold tracking-[0.12em] uppercase"
+            <span className="font-mono text-[10px] lg:text-[0.75rem] font-bold tracking-[0.12em] uppercase"
                   style={{ color: '#F7931A' }}>
               BITCOIN
             </span>
           </div>
-          <span className="font-mono text-[0.5rem] lg:text-[0.55rem] text-text-secondary pr-1 lg:pr-2">
-            TECHNICAL GAUGE · RSI · MA · OSC
+          <span className="font-mono text-[10px] lg:text-[0.55rem] text-text-secondary pr-1 lg:pr-2">
+            TECHNICAL GAUGE
           </span>
         </div>
         <div className="flex-1 min-h-0 overflow-hidden relative">
@@ -485,7 +465,7 @@ const RiskEngine = () => {
         </div>
       </div>
 
-      {/* ═══ 3. Bitcoin Sentiment — Richter Scale ═══ */}
+      {/* ═══ 3. Bitcoin Sentiment (Richter Scale) ═══ */}
       <div className="min-h-[140px] lg:min-h-0 lg:flex-[2.5] flex flex-col overflow-hidden">
         <BitcoinSentiment />
       </div>
@@ -497,7 +477,7 @@ const RiskEngine = () => {
    SUB-COMPONENTS
    ═══════════════════════════════════════════ */
 
-/* ── InfoTooltip: hover-activated tooltip with Framer Motion ── */
+/* InfoTooltip: hover-activated tooltip with Framer Motion */
 const InfoTooltip = ({ text }) => {
   const [show, setShow] = useState(false);
   const ref = useRef(null);
@@ -524,7 +504,7 @@ const InfoTooltip = ({ text }) => {
             style={{ width: '220px' }}
           >
             <div
-              className="rounded-lg px-3 py-2 font-mono text-[0.55rem] leading-relaxed text-white"
+              className="rounded-lg px-3 py-2 font-mono text-[10px] leading-relaxed text-white"
               style={{
                 background: 'rgba(17, 17, 17, 0.95)',
                 border: '0.5px solid rgba(255,255,255,0.1)',
@@ -534,7 +514,6 @@ const InfoTooltip = ({ text }) => {
             >
               {text}
             </div>
-            {/* Arrow */}
             <div
               className="absolute left-1/2 -translate-x-1/2 -bottom-1"
               style={{
@@ -552,12 +531,12 @@ const InfoTooltip = ({ text }) => {
   );
 };
 
-/* ── Field: text-type input to prevent leading zeros / allow empty ── */
+/* Field: touch-friendly input with decimal inputMode */
 const Field = ({ icon, label, value, onChange, suffix }) => (
   <div className="flex flex-col gap-1">
     <div className="flex items-center gap-1">
       <span className="text-text-secondary">{icon}</span>
-      <label className="font-mono text-[0.5rem] lg:text-[0.6rem] font-bold text-white tracking-wider">{label}</label>
+      <label className="font-mono text-[10px] lg:text-[0.6rem] font-bold text-white tracking-wider">{label}</label>
     </div>
     <div className="relative">
       <input
@@ -566,15 +545,15 @@ const Field = ({ icon, label, value, onChange, suffix }) => (
         value={value}
         onChange={(e) => {
           const raw = e.target.value;
-          // Allow empty, digits, one decimal point, and optional leading minus
           if (raw === '' || /^-?\d*\.?\d*$/.test(raw)) {
             onChange(raw);
           }
         }}
-        className="input-terminal pr-8"
+        className="input-terminal pr-8 text-sm lg:text-base"
+        style={{ minHeight: '36px' }}
       />
       {suffix && (
-        <span className="absolute right-2.5 top-1/2 -translate-y-1/2 font-mono text-[0.5rem] lg:text-[0.55rem] text-text-secondary pointer-events-none">
+        <span className="absolute right-2.5 top-1/2 -translate-y-1/2 font-mono text-[10px] lg:text-[0.55rem] text-text-secondary pointer-events-none">
           {suffix}
         </span>
       )}
@@ -584,8 +563,8 @@ const Field = ({ icon, label, value, onChange, suffix }) => (
 
 const Stat = ({ label, value, color }) => (
   <div className="flex flex-col items-center gap-0.5">
-    <span className="font-mono text-[0.45rem] lg:text-[0.5rem] text-text-secondary tracking-wider">{label}</span>
-    <span className={`font-mono text-xs lg:text-sm font-bold ${color}`}>{value}</span>
+    <span className="font-mono text-[10px] lg:text-[0.5rem] text-text-secondary tracking-wider">{label}</span>
+    <span className={`font-mono text-sm font-bold ${color}`}>{value}</span>
   </div>
 );
 

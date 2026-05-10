@@ -107,11 +107,11 @@ const SkeletonRow = () => (
 const FeedError = () => (
   <div className="flex flex-col items-center justify-center gap-2 py-6 opacity-60">
     <WifiOff size={16} className="text-text-muted" />
-    <span className="font-mono text-[0.6rem] text-text-muted tracking-wider">SERVICE TEMPORARILY UNAVAILABLE</span>
+    <span className="font-mono text-[10px] text-text-muted tracking-wider">SERVICE TEMPORARILY UNAVAILABLE</span>
   </div>
 );
 const SourceLabel = ({ name }) => (
-  <span className="font-mono text-[0.5rem] tracking-wide" style={{ color: '#60A5FA' }}>via {name}</span>
+  <span className="font-mono text-[10px] tracking-wide" style={{ color: '#60A5FA' }}>via {name}</span>
 );
 
 const EconomicCalendarWidget = () => {
@@ -144,20 +144,20 @@ const IntelligenceHub = () => {
   return (
     <div className="h-auto lg:h-full flex flex-col overflow-visible lg:overflow-hidden">
       {/* MACRO INTELLIGENCE */}
-      <div className="min-h-[200px] lg:min-h-0 lg:flex-[3] flex flex-col overflow-hidden">
-        <div className="flex items-center justify-between px-2 lg:px-4 py-2 lg:py-3 thin-border-b flex-shrink-0">
+      <div className="min-h-[200px] lg:min-h-0 lg:flex-[3] flex flex-col overflow-visible lg:overflow-hidden">
+        <div className="flex items-center justify-between px-3 lg:px-4 py-2 lg:py-3 thin-border-b flex-shrink-0">
           <div className="flex items-center gap-2 lg:gap-2.5">
             <Newspaper size={15} className="text-accent-blue" />
-            <span className="font-mono text-[0.65rem] lg:text-[0.8rem] font-extrabold tracking-[0.14em] uppercase text-accent-blue">MACRO INTELLIGENCE</span>
+            <span className="font-mono text-[10px] lg:text-[0.8rem] font-extrabold tracking-[0.14em] uppercase text-accent-blue">MACRO INTELLIGENCE</span>
           </div>
           <div className="flex items-center gap-2">
             {macro.lastUpdated && !macro.loading && (
-              <span className="font-mono text-[0.45rem] text-text-muted">{relativeTime(macro.lastUpdated.toISOString())}</span>
+              <span className="font-mono text-[9px] text-text-muted">{relativeTime(macro.lastUpdated.toISOString())}</span>
             )}
             {!macro.loading && !macro.error && macro.items.length > 0 && (
               <div className="flex items-center gap-1.5">
                 <Flame size={11} className="text-accent-rose animate-pulse-glow" />
-                <span className="font-mono text-[0.55rem] font-semibold text-accent-rose">LIVE</span>
+                <span className="font-mono text-[10px] font-semibold text-accent-rose">LIVE</span>
               </div>
             )}
             {macro.loading && (
@@ -167,7 +167,7 @@ const IntelligenceHub = () => {
             )}
           </div>
         </div>
-        <div className="flex-1 overflow-y-auto px-2 lg:px-3 py-2 space-y-1.5">
+        <div className="flex-1 overflow-visible lg:overflow-y-auto px-3 py-2 space-y-1.5">
           {macro.loading && macro.items.length === 0 && (
             <div className="space-y-1.5">{[...Array(5)].map((_, i) => <SkeletonRow key={i} />)}</div>
           )}
@@ -177,15 +177,15 @@ const IntelligenceHub = () => {
               {macro.items.map((item, i) => (
                 <motion.a key={item.link || `macro-${i}`} href={item.link} target="_blank" rel="noopener noreferrer"
                   initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}
-                  className="group glass rounded-lg px-2 lg:px-3 py-2 lg:py-2.5 block no-underline hover:bg-white/[0.04] transition-all duration-200">
+                  className="group glass rounded-lg px-3 py-2.5 block no-underline hover:bg-white/[0.04] transition-all duration-200">
                   <div className="flex items-start justify-between gap-2">
-                    <p className="font-sans text-[0.65rem] lg:text-[0.7rem] text-text-primary leading-relaxed flex-1 group-hover:text-accent-blue transition-colors">{item.title}</p>
+                    <p className="font-sans text-[11px] lg:text-[0.7rem] text-text-primary leading-relaxed flex-1 group-hover:text-accent-blue transition-colors">{item.title}</p>
                     <span className="badge badge-high flex items-center gap-1 flex-shrink-0"><AlertTriangle size={8} />HIGH</span>
                   </div>
                   <div className="flex items-center gap-2 mt-1.5">
                     <SourceLabel name={item._source} />
-                    <span className="text-text-muted text-[0.5rem]">•</span>
-                    <span className="font-mono text-[0.55rem] text-text-muted">{relativeTime(item.pubDate)}</span>
+                    <span className="text-text-muted text-[10px]">·</span>
+                    <span className="font-mono text-[10px] text-text-muted">{relativeTime(item.pubDate)}</span>
                     <ExternalLink size={9} className="text-text-muted opacity-0 group-hover:opacity-100 transition-opacity ml-auto" />
                   </div>
                 </motion.a>
@@ -195,16 +195,16 @@ const IntelligenceHub = () => {
         </div>
       </div>
 
-      <div className="px-2 lg:px-4 py-2 flex-shrink-0">
+      <div className="px-3 lg:px-4 py-2 flex-shrink-0">
         <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, transparent, rgba(168,85,247,0.35), transparent)' }} />
       </div>
 
       {/* CRYPTO NARRATIVES */}
-      <div className="min-h-[200px] lg:min-h-0 lg:flex-[3] flex flex-col overflow-hidden">
-        <div className="flex items-center justify-between px-2 lg:px-4 py-2 lg:py-3 thin-border-b flex-shrink-0">
+      <div className="min-h-[200px] lg:min-h-0 lg:flex-[3] flex flex-col overflow-visible lg:overflow-hidden">
+        <div className="flex items-center justify-between px-3 lg:px-4 py-2 lg:py-3 thin-border-b flex-shrink-0">
           <div className="flex items-center gap-2 lg:gap-2.5">
             <TrendingUp size={15} className="text-accent-purple" />
-            <span className="font-mono text-[0.65rem] lg:text-[0.8rem] font-extrabold tracking-[0.14em] uppercase text-accent-purple">CRYPTO NARRATIVES</span>
+            <span className="font-mono text-[10px] lg:text-[0.8rem] font-extrabold tracking-[0.14em] uppercase text-accent-purple">CRYPTO NARRATIVES</span>
           </div>
           <div className="flex items-center gap-2">
             {crypto.loading && crypto.items.length === 0 && (
@@ -215,14 +215,14 @@ const IntelligenceHub = () => {
             {!crypto.loading && (
               <div className="flex items-center gap-1">
                 <Hash size={10} className="text-text-secondary" />
-                <span className="font-mono text-[0.55rem] text-text-secondary">
-                  {crypto.error && crypto.items.length === 0 ? '—' : `${crypto.items.length} SIGNALS`}
+                <span className="font-mono text-[10px] text-text-secondary">
+                  {crypto.error && crypto.items.length === 0 ? 'N/A' : `${crypto.items.length} SIGNALS`}
                 </span>
               </div>
             )}
           </div>
         </div>
-        <div className="flex-1 overflow-y-auto px-2 lg:px-3 py-2 space-y-1.5">
+        <div className="flex-1 overflow-visible lg:overflow-y-auto px-3 py-2 space-y-1.5">
           {crypto.loading && crypto.items.length === 0 && (
             <div className="space-y-1.5">{[...Array(5)].map((_, i) => <SkeletonRow key={i} />)}</div>
           )}
@@ -234,18 +234,18 @@ const IntelligenceHub = () => {
                 return (
                   <motion.a key={item.link || `crypto-${i}`} href={item.link} target="_blank" rel="noopener noreferrer"
                     initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 + i * 0.05 }}
-                    className="group glass rounded-lg px-2 lg:px-3 py-2 lg:py-2.5 block no-underline hover:bg-white/[0.04] transition-all duration-200">
+                    className="group glass rounded-lg px-3 py-2.5 block no-underline hover:bg-white/[0.04] transition-all duration-200">
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex items-start gap-2 flex-1">
                         <span className={`badge ${badge} flex-shrink-0 mt-0.5`}>#{tag}</span>
-                        <p className="font-sans text-[0.65rem] lg:text-[0.7rem] text-text-primary leading-relaxed group-hover:text-accent-purple transition-colors">{item.title}</p>
+                        <p className="font-sans text-[11px] lg:text-[0.7rem] text-text-primary leading-relaxed group-hover:text-accent-purple transition-colors">{item.title}</p>
                       </div>
                       <ExternalLink size={10} className="text-text-muted opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-1" />
                     </div>
                     <div className="flex items-center gap-2 mt-1.5 pl-[calc(0.6rem+26px)]">
                       <SourceLabel name={item._source} />
-                      <span className="text-text-muted text-[0.5rem]">•</span>
-                      <span className="font-mono text-[0.55rem] text-text-muted">{relativeTime(item.pubDate)}</span>
+                      <span className="text-text-muted text-[10px]">·</span>
+                      <span className="font-mono text-[10px] text-text-muted">{relativeTime(item.pubDate)}</span>
                     </div>
                   </motion.a>
                 );
@@ -255,18 +255,18 @@ const IntelligenceHub = () => {
         </div>
       </div>
 
-      <div className="px-2 lg:px-4 py-2 flex-shrink-0">
+      <div className="px-3 lg:px-4 py-2 flex-shrink-0">
         <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, transparent, rgba(16,185,129,0.35), transparent)' }} />
       </div>
 
       {/* ECONOMIC CALENDAR */}
-      <div className="min-h-[300px] lg:min-h-0 lg:flex-[4] flex flex-col overflow-hidden">
-        <div className="flex items-center justify-between px-2 lg:px-4 py-2 lg:py-3 thin-border-b flex-shrink-0">
+      <div className="min-h-[300px] lg:min-h-0 lg:flex-[4] flex flex-col overflow-hidden pb-20 lg:pb-0">
+        <div className="flex items-center justify-between px-3 lg:px-4 py-2 lg:py-3 thin-border-b flex-shrink-0">
           <div className="flex items-center gap-2 lg:gap-2.5">
             <Calendar size={15} className="text-accent-emerald" />
-            <span className="font-mono text-[0.65rem] lg:text-[0.8rem] font-extrabold tracking-[0.14em] uppercase text-accent-emerald">ECONOMIC CALENDAR</span>
+            <span className="font-mono text-[10px] lg:text-[0.8rem] font-extrabold tracking-[0.14em] uppercase text-accent-emerald">ECONOMIC CALENDAR</span>
           </div>
-          <span className="font-mono text-[0.5rem] lg:text-[0.55rem] text-text-muted">HIGH IMPACT</span>
+          <span className="font-mono text-[10px] lg:text-[0.55rem] text-text-muted">HIGH IMPACT</span>
         </div>
         <div className="flex-1 overflow-hidden">
           <EconomicCalendarWidget />

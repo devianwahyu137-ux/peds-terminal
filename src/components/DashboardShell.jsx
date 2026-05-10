@@ -5,6 +5,9 @@ import IntelligenceHub from './IntelligenceHub';
 import MarketVisualizer from './MarketVisualizer';
 import RiskEngine from './RiskEngine';
 
+/* Header height constant for offset calculations */
+const HEADER_H = 44;
+
 /* ═══════════════════════════════════════════
    SYMBOL DROPDOWN
    ═══════════════════════════════════════════ */
@@ -81,6 +84,7 @@ const SymbolDropdown = ({ symbols, activeSymbol, setActiveSymbol }) => {
 
 /* ═══════════════════════════════════════════
    DASHBOARD SHELL
+   Sticky header + safe-scrolling mobile layout
    ═══════════════════════════════════════════ */
 const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -109,14 +113,22 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
       .toUpperCase();
 
   return (
-    <div className="min-h-screen h-auto overflow-y-auto lg:h-screen lg:overflow-hidden w-screen flex flex-col bg-terminal-bg">
-      {/* ── Top Bar ── */}
+    <div
+      className="min-h-screen h-auto overflow-y-auto flex flex-col lg:h-screen lg:overflow-hidden bg-terminal-bg w-screen"
+      style={{ paddingTop: `${HEADER_H}px` }}
+    >
+      {/* ── Sticky Top Bar ── */}
       <motion.header
         initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="flex items-center justify-between px-3 lg:px-5 thin-border-b flex-shrink-0"
-        style={{ height: '44px', background: 'rgba(5,5,5,0.95)' }}
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-3 lg:px-5 flex-shrink-0"
+        style={{
+          height: `${HEADER_H}px`,
+          background: 'rgba(5,5,5,0.97)',
+          borderBottom: '0.5px solid rgba(255,255,255,0.06)',
+          backdropFilter: 'blur(12px)',
+        }}
       >
         {/* Left: Brand + Dropdown */}
         <div className="flex items-center gap-2 lg:gap-4">
@@ -137,25 +149,25 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
           />
         </div>
 
-        {/* Center: Status — hidden on mobile */}
+        {/* Center: Status (hidden on mobile) */}
         <div className="hidden md:flex items-center gap-4">
           <div className="flex items-center gap-1.5">
             <Activity size={11} className="text-accent-emerald" />
-            <span className="font-mono text-[0.6rem] text-text-secondary tracking-wide">
+            <span className="font-mono text-[10px] text-text-secondary tracking-wide">
               MARKET OPEN
             </span>
           </div>
           <div className="h-3 w-px bg-border-dim" />
           <div className="flex items-center gap-1.5">
             <Wifi size={11} className="text-accent-emerald" />
-            <span className="font-mono text-[0.6rem] text-text-secondary tracking-wide">
+            <span className="font-mono text-[10px] text-text-secondary tracking-wide">
               CONNECTED
             </span>
           </div>
           <div className="h-3 w-px bg-border-dim" />
           <div className="flex items-center gap-1.5">
             <Zap size={11} className="text-accent-amber" />
-            <span className="font-mono text-[0.6rem] text-accent-amber tracking-wide">
+            <span className="font-mono text-[10px] text-accent-amber tracking-wide">
               24/7 CRYPTO
             </span>
           </div>
@@ -165,12 +177,12 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
         <div className="flex items-center gap-2 lg:gap-3">
           <div className="hidden sm:flex items-center gap-1.5">
             <Shield size={10} className="text-accent-emerald" />
-            <span className="font-mono text-[0.55rem] text-text-muted tracking-wider">DSS</span>
+            <span className="font-mono text-[10px] text-text-muted tracking-wider">DSS</span>
           </div>
           <div className="h-3 w-px bg-border-dim hidden sm:block" />
           <div className="hidden lg:flex items-center gap-1.5">
             <Clock size={11} className="text-text-secondary" />
-            <span className="font-mono text-[0.6rem] text-text-secondary tracking-wide">
+            <span className="font-mono text-[10px] text-text-secondary tracking-wide">
               {formatDate(currentTime)}
             </span>
           </div>
@@ -183,12 +195,11 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
       </motion.header>
 
       {/* ── Content: Responsive Layout ──
-           Mobile (default): vertical stack — Chart → Risk → News
-           Landscape mobile:  side-by-side Chart + Risk, News below
-           Desktop (lg+):     3-column grid — News | Chart | Risk
+           Mobile: vertical stack (Chart > Risk > News), natural scroll
+           Desktop (lg+): 3-column grid (News | Chart | Risk), no scroll
       */}
       <div className="flex-1 flex flex-col lg:grid lg:grid-cols-[1fr_2fr_1fr] lg:overflow-hidden lg:min-h-0">
-        {/* ── Column 1: Chart (top on mobile, center on desktop) ── */}
+        {/* MarketVisualizer: Top on mobile, Center on desktop */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -198,7 +209,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
           <MarketVisualizer activeSymbol={activeSymbol} />
         </motion.div>
 
-        {/* ── Column 2: Risk-Quant Engine (middle on mobile, right on desktop) ── */}
+        {/* RiskEngine: Middle on mobile, Right on desktop */}
         <motion.div
           initial={{ x: 30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -209,7 +220,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
           <RiskEngine />
         </motion.div>
 
-        {/* ── Column 3: Intelligence/News (bottom on mobile, left on desktop) ── */}
+        {/* IntelligenceHub: Bottom on mobile, Left on desktop */}
         <motion.div
           initial={{ x: -30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
