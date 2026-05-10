@@ -65,8 +65,6 @@ const CryptoScreenerWidget = () => {
 
 /* ═══════════════════════════════════════════
    REUSABLE: MiniArcGauge — Symmetric SVG Dial
-   viewBox: 0 0 100 100  |  center: (50, 50)  |  r: 40
-   270° sweep starting at 12 o'clock (-90° rotation)
    ═══════════════════════════════════════════ */
 const MiniArcGauge = ({
   value, maxValue = 100, label, sublabel,
@@ -74,7 +72,6 @@ const MiniArcGauge = ({
 }) => {
   const clamped = Math.max(0, Math.min(maxValue, Math.abs(value)));
   const pct = maxValue > 0 ? clamped / maxValue : 0;
-
   const cx = 50, cy = 50, r = 40;
   const circumference = 2 * Math.PI * r;
   const strokeDashoffset = circumference - pct * circumference;
@@ -84,13 +81,9 @@ const MiniArcGauge = ({
     <div className="flex flex-col items-center justify-center min-w-0 px-1">
       <div className="relative flex items-center justify-center w-full max-w-[80px] mx-auto">
         <svg viewBox="0 0 100 100" className="w-full h-full" style={{ transform: 'rotate(-90deg)' }}>
-          {/* Background track */}
-          <circle cx={cx} cy={cy} r={r} fill="none"
-            stroke="rgba(255,255,255,0.05)" strokeWidth="6" />
-          {/* Filled arc */}
+          <circle cx={cx} cy={cy} r={r} fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="6" />
           {!loading && pct > 0 && (
-            <motion.circle
-              cx={cx} cy={cy} r={r} fill="none"
+            <motion.circle cx={cx} cy={cy} r={r} fill="none"
               stroke={color} strokeWidth="6" strokeLinecap="round"
               strokeDasharray={circumference}
               initial={{ strokeDashoffset: circumference }}
@@ -100,8 +93,7 @@ const MiniArcGauge = ({
             />
           )}
         </svg>
-        {/* Centered value text (not rotated) */}
-        <span className="absolute font-mono text-xs font-bold"
+        <span className="absolute font-mono text-[0.65rem] md:text-xs font-bold"
           style={{ color: loading ? '#374151' : '#E5E7EB' }}>
           {shown}
         </span>
@@ -177,33 +169,24 @@ const MarketPulseBar = () => {
     : data.fearGreed.value <= 45 ? '#F59E0B'
     : data.fearGreed.value <= 55 ? '#6B7280'
     : data.fearGreed.value <= 75 ? '#10B981' : '#3B82F6';
-
   const mcColor = data.mcapChange.value >= 0 ? '#10B981' : '#F43F5E';
 
   return (
-    <div className="grid grid-cols-4 w-full h-full px-2 gap-0 place-items-center">
-      <MiniArcGauge
-        value={data.fearGreed.value} maxValue={100}
+    <div className="grid grid-cols-2 md:grid-cols-4 w-full h-full px-2 gap-2 md:gap-0 place-items-center">
+      <MiniArcGauge value={data.fearGreed.value} maxValue={100}
         label="FEAR & GREED" sublabel={data.fearGreed.label}
-        color={fngColor} icon={Flame} loading={data.fearGreed.loading}
-      />
-      <MiniArcGauge
-        value={data.btcDom.value} maxValue={100}
+        color={fngColor} icon={Flame} loading={data.fearGreed.loading} />
+      <MiniArcGauge value={data.btcDom.value} maxValue={100}
         label="BTC DOM" sublabel={`${data.btcDom.value}%`}
         color="#F59E0B" icon={PieChart} loading={data.btcDom.loading}
-        displayValue={data.btcDom.loading ? '—' : data.btcDom.value}
-      />
-      <MiniArcGauge
-        value={data.altSeason.value} maxValue={100}
+        displayValue={data.btcDom.loading ? '—' : data.btcDom.value} />
+      <MiniArcGauge value={data.altSeason.value} maxValue={100}
         label="ALT SEASON" sublabel={data.altSeason.value > 60 ? 'ALT SZN' : data.altSeason.value > 40 ? 'MIXED' : 'BTC SZN'}
-        color="#A855F7" icon={TrendingUp} loading={data.altSeason.loading}
-      />
-      <MiniArcGauge
-        value={Math.abs(data.mcapChange.value)} maxValue={10}
+        color="#A855F7" icon={TrendingUp} loading={data.altSeason.loading} />
+      <MiniArcGauge value={Math.abs(data.mcapChange.value)} maxValue={10}
         label="MCAP 24H" sublabel={`${data.mcapChange.value >= 0 ? '+' : ''}${data.mcapChange.value}%`}
         color={mcColor} icon={BarChart2} loading={data.mcapChange.loading}
-        displayValue={data.mcapChange.loading ? '—' : `${data.mcapChange.value > 0 ? '+' : ''}${data.mcapChange.value}`}
-      />
+        displayValue={data.mcapChange.loading ? '—' : `${data.mcapChange.value > 0 ? '+' : ''}${data.mcapChange.value}`} />
     </div>
   );
 };
@@ -215,19 +198,19 @@ const MarketVisualizer = ({ activeSymbol }) => {
   const symbolLabel = activeSymbol.replace('USDT', '') + ' / USDT';
 
   return (
-    <div className="h-full flex flex-col overflow-hidden">
+    <div className="h-auto lg:h-full flex flex-col overflow-visible lg:overflow-hidden">
       {/* ── Advanced Chart ── */}
-      <div className="flex-[6] flex flex-col overflow-hidden thin-border-b min-h-0">
-        <div className="flex items-center justify-between px-4 py-2 thin-border-b flex-shrink-0">
+      <div className="h-[400px] lg:h-auto lg:flex-[6] flex flex-col overflow-hidden thin-border-b min-h-0">
+        <div className="flex items-center justify-between px-2 lg:px-4 py-2 thin-border-b flex-shrink-0">
           <div className="flex items-center gap-2">
             <BarChart3 size={13} className="text-accent-blue" />
-            <span className="font-mono text-[0.75rem] font-bold tracking-[0.12em] text-accent-blue uppercase">
+            <span className="font-mono text-[0.65rem] lg:text-[0.75rem] font-bold tracking-[0.12em] text-accent-blue uppercase">
               {symbolLabel}
             </span>
           </div>
           <div className="flex items-center gap-1">
             <Layers size={10} className="text-text-muted" />
-            <span className="font-mono text-[0.55rem] text-text-muted">BINANCE</span>
+            <span className="font-mono text-[0.5rem] lg:text-[0.55rem] text-text-muted">BINANCE</span>
           </div>
         </div>
         <div className="flex-1 min-h-0">
@@ -236,15 +219,15 @@ const MarketVisualizer = ({ activeSymbol }) => {
       </div>
 
       {/* ── Crypto Sector Performance (Screener) ── */}
-      <div className="flex-[3] flex flex-col overflow-hidden thin-border-b min-h-0">
-        <div className="flex items-center justify-between px-4 py-1.5 thin-border-b flex-shrink-0">
+      <div className="h-[300px] lg:h-auto lg:flex-[3] flex flex-col overflow-hidden thin-border-b min-h-0">
+        <div className="flex items-center justify-between px-2 lg:px-4 py-1.5 thin-border-b flex-shrink-0">
           <div className="flex items-center gap-2">
             <LayoutGrid size={12} className="text-accent-purple" />
-            <span className="font-mono text-[0.7rem] font-bold tracking-[0.12em] text-accent-purple uppercase">
+            <span className="font-mono text-[0.6rem] lg:text-[0.7rem] font-bold tracking-[0.12em] text-accent-purple uppercase">
               CRYPTO SECTOR PERFORMANCE
             </span>
           </div>
-          <span className="font-mono text-[0.5rem] text-text-muted">TOP MOVERS</span>
+          <span className="font-mono text-[0.45rem] lg:text-[0.5rem] text-text-muted">TOP MOVERS</span>
         </div>
         <div className="flex-1 min-h-0">
           <CryptoScreenerWidget />
@@ -252,17 +235,17 @@ const MarketVisualizer = ({ activeSymbol }) => {
       </div>
 
       {/* ── Market Pulse Bar ── */}
-      <div className="flex-shrink-0 overflow-hidden" style={{ height: '120px' }}>
-        <div className="flex items-center justify-between px-4 py-1.5 thin-border-b flex-shrink-0">
+      <div className="flex-shrink-0 overflow-hidden" style={{ minHeight: '120px' }}>
+        <div className="flex items-center justify-between px-2 lg:px-4 py-1.5 thin-border-b flex-shrink-0">
           <div className="flex items-center gap-2">
             <Activity size={12} className="text-accent-emerald" />
-            <span className="font-mono text-[0.7rem] font-bold tracking-[0.12em] text-accent-emerald uppercase">
+            <span className="font-mono text-[0.6rem] lg:text-[0.7rem] font-bold tracking-[0.12em] text-accent-emerald uppercase">
               MARKET PULSE
             </span>
           </div>
-          <span className="font-mono text-[0.5rem] text-text-muted">LIVE SENTIMENT</span>
+          <span className="font-mono text-[0.45rem] lg:text-[0.5rem] text-text-muted">LIVE SENTIMENT</span>
         </div>
-        <div className="h-[calc(100%-26px)] flex items-center">
+        <div className="min-h-[94px] flex items-center py-2 md:py-0">
           <MarketPulseBar />
         </div>
       </div>

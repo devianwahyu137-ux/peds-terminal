@@ -109,27 +109,27 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
       .toUpperCase();
 
   return (
-    <div className="h-screen w-screen flex flex-col overflow-hidden bg-terminal-bg">
+    <div className="min-h-screen h-auto overflow-y-auto lg:h-screen lg:overflow-hidden w-screen flex flex-col bg-terminal-bg">
       {/* ── Top Bar ── */}
       <motion.header
         initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="flex items-center justify-between px-5 thin-border-b flex-shrink-0"
+        className="flex items-center justify-between px-3 lg:px-5 thin-border-b flex-shrink-0"
         style={{ height: '44px', background: 'rgba(5,5,5,0.95)' }}
       >
         {/* Left: Brand + Dropdown */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 lg:gap-4">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-accent-blue animate-pulse-glow" />
-            <span className="font-mono text-sm font-bold tracking-wider gradient-text-brand">
+            <span className="font-mono text-xs lg:text-sm font-bold tracking-wider gradient-text-brand">
               PEDS TERMINAL
             </span>
-            <span className="font-mono text-[0.55rem] text-text-muted tracking-widest">
+            <span className="font-mono text-[0.55rem] text-text-muted tracking-widest hidden sm:inline">
               v1.0
             </span>
           </div>
-          <div className="h-4 w-px bg-border-dim" />
+          <div className="h-4 w-px bg-border-dim hidden sm:block" />
           <SymbolDropdown
             symbols={symbols}
             activeSymbol={activeSymbol}
@@ -137,8 +137,8 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
           />
         </div>
 
-        {/* Center: Status */}
-        <div className="flex items-center gap-4">
+        {/* Center: Status — hidden on mobile */}
+        <div className="hidden md:flex items-center gap-4">
           <div className="flex items-center gap-1.5">
             <Activity size={11} className="text-accent-emerald" />
             <span className="font-mono text-[0.6rem] text-text-secondary tracking-wide">
@@ -162,54 +162,61 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
         </div>
 
         {/* Right: Clock */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-2 lg:gap-3">
+          <div className="hidden sm:flex items-center gap-1.5">
             <Shield size={10} className="text-accent-emerald" />
             <span className="font-mono text-[0.55rem] text-text-muted tracking-wider">DSS</span>
           </div>
-          <div className="h-3 w-px bg-border-dim" />
-          <div className="flex items-center gap-1.5">
+          <div className="h-3 w-px bg-border-dim hidden sm:block" />
+          <div className="hidden lg:flex items-center gap-1.5">
             <Clock size={11} className="text-text-secondary" />
             <span className="font-mono text-[0.6rem] text-text-secondary tracking-wide">
               {formatDate(currentTime)}
             </span>
           </div>
-          <div className="glass-elevated rounded-md px-3 py-1">
-            <span className="font-mono text-xs font-semibold text-accent-blue tracking-wider">
+          <div className="glass-elevated rounded-md px-2 lg:px-3 py-1">
+            <span className="font-mono text-[0.65rem] lg:text-xs font-semibold text-accent-blue tracking-wider">
               {formatTime(currentTime)}
             </span>
           </div>
         </div>
       </motion.header>
 
-      {/* ── 3-Column Grid ── */}
-      <div className="flex-1 grid grid-cols-[1fr_2fr_1fr] overflow-hidden min-h-0">
-        <motion.div
-          initial={{ x: -30, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="overflow-hidden thin-border-r"
-        >
-          <IntelligenceHub />
-        </motion.div>
-
+      {/* ── Content: Responsive Layout ──
+           Mobile (default): vertical stack — Chart → Risk → News
+           Landscape mobile:  side-by-side Chart + Risk, News below
+           Desktop (lg+):     3-column grid — News | Chart | Risk
+      */}
+      <div className="flex-1 flex flex-col lg:grid lg:grid-cols-[1fr_2fr_1fr] lg:overflow-hidden lg:min-h-0">
+        {/* ── Column 1: Chart (top on mobile, center on desktop) ── */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="overflow-hidden"
+          className="min-h-0 thin-border-b lg:thin-border-b-0 lg:overflow-hidden order-1 lg:order-2"
         >
           <MarketVisualizer activeSymbol={activeSymbol} />
         </motion.div>
 
+        {/* ── Column 2: Risk-Quant Engine (middle on mobile, right on desktop) ── */}
         <motion.div
           initial={{ x: 30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="overflow-hidden"
+          className="min-h-0 thin-border-b lg:thin-border-b-0 lg:overflow-hidden order-2 lg:order-3"
           style={{ borderLeft: '0.5px solid rgba(255,255,255,0.06)' }}
         >
           <RiskEngine />
+        </motion.div>
+
+        {/* ── Column 3: Intelligence/News (bottom on mobile, left on desktop) ── */}
+        <motion.div
+          initial={{ x: -30, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="min-h-0 lg:overflow-hidden lg:thin-border-r order-3 lg:order-1"
+        >
+          <IntelligenceHub />
         </motion.div>
       </div>
     </div>

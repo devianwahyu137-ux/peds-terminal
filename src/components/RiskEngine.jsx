@@ -164,17 +164,17 @@ const BitcoinSentiment = () => {
   };
 
   return (
-    <div className="flex flex-col gap-2 px-3 py-2.5">
+    <div className="flex flex-col gap-2 px-2 lg:px-3 py-2 lg:py-2.5">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Activity size={13} className="text-accent-amber" />
-          <span className="font-mono text-[0.75rem] font-bold tracking-[0.12em] uppercase"
+          <span className="font-mono text-[0.65rem] lg:text-[0.75rem] font-bold tracking-[0.12em] uppercase"
                 style={{ color: '#F7931A' }}>
             BTC SENTIMENT
           </span>
         </div>
-        <span className="font-mono text-[0.55rem] text-text-secondary">
+        <span className="font-mono text-[0.5rem] lg:text-[0.55rem] text-text-secondary">
           FEAR &amp; GREED
         </span>
       </div>
@@ -301,11 +301,11 @@ const BitcoinSentiment = () => {
           <div className="flex items-center justify-center gap-2 mt-0.5">
             <div className="glass rounded-md px-3 py-1.5 flex items-center gap-2"
                  style={{ border: `0.5px solid ${needleColor}33` }}>
-              <span className="font-mono text-base font-bold" style={{ color: needleColor }}>
+              <span className="font-mono text-sm lg:text-base font-bold" style={{ color: needleColor }}>
                 {value}
               </span>
               <span className="font-mono text-[0.5rem] text-text-muted">—</span>
-              <span className="font-mono text-[0.65rem] font-semibold tracking-wider" style={{ color: needleColor }}>
+              <span className="font-mono text-[0.55rem] lg:text-[0.65rem] font-semibold tracking-wider" style={{ color: needleColor }}>
                 {getZoneLabel(value) === getZoneSide(value)
                   ? getZoneLabel(value)
                   : `${getZoneLabel(value)} / ${getZoneSide(value)}`}
@@ -391,25 +391,25 @@ const RiskEngine = () => {
     : results.ror < 0.05 ? 'ELEVATED' : 'CRITICAL';
 
   return (
-    <div className="h-full flex flex-col overflow-hidden">
+    <div className="h-auto lg:h-full flex flex-col overflow-visible lg:overflow-hidden">
       {/* ═══ 1. Risk-Quant Engine ═══ */}
-      <div className="flex-[5] flex flex-col overflow-hidden thin-border-b min-h-0">
-        <div className="flex items-center justify-between px-4 py-2.5 thin-border-b flex-shrink-0">
+      <div className="min-h-0 lg:flex-[5] flex flex-col overflow-hidden thin-border-b">
+        <div className="flex items-center justify-between px-2 lg:px-4 py-2 lg:py-2.5 thin-border-b flex-shrink-0">
           <div className="flex items-center gap-2">
             <Calculator size={13} className="text-accent-blue" />
-            <span className="font-mono text-[0.75rem] font-bold tracking-[0.12em] text-accent-blue uppercase">
+            <span className="font-mono text-[0.65rem] lg:text-[0.75rem] font-bold tracking-[0.12em] text-accent-blue uppercase">
               RISK-QUANT ENGINE
             </span>
           </div>
           <div className="flex items-center gap-1">
             <Target size={10} className="text-text-secondary" />
-            <span className="font-mono text-[0.55rem] text-text-secondary pr-4">POSITION SIZER</span>
+            <span className="font-mono text-[0.5rem] lg:text-[0.55rem] text-text-secondary pr-2 lg:pr-4">POSITION SIZER</span>
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-3 py-2 space-y-2.5 min-h-0">
+        <div className="flex-1 overflow-y-auto px-2 lg:px-3 py-2 space-y-2 lg:space-y-2.5 min-h-0">
           {/* Position Inputs */}
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-1.5 lg:gap-2">
             <Field icon={<DollarSign size={10} />} label="EQUITY" value={rawInputs.equity} onChange={(v) => update('equity', v)} suffix="USD" />
             <Field icon={<Percent size={10} />} label="RISK %" value={rawInputs.riskPct} onChange={(v) => update('riskPct', v)} suffix="%" />
             <Field icon={<Crosshair size={10} />} label="ENTRY PRICE" value={rawInputs.entry} onChange={(v) => update('entry', v)} suffix="USD" />
@@ -417,7 +417,7 @@ const RiskEngine = () => {
           </div>
 
           {/* Position Results */}
-          <div className="glass rounded-lg p-2.5 neon-blue">
+          <div className="glass rounded-lg p-2 lg:p-2.5 neon-blue">
             <div className="grid grid-cols-3 gap-1">
               <Stat label="POS SIZE" value={`$${results.positionSize.toLocaleString(undefined, { maximumFractionDigits: 0 })}`} color="text-accent-blue" />
               <Stat label="$ AT RISK" value={`$${results.dollarRisk.toLocaleString(undefined, { maximumFractionDigits: 0 })}`} color="text-accent-amber" />
@@ -426,37 +426,37 @@ const RiskEngine = () => {
           </div>
 
           {/* Kelly / RoR Inputs */}
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-1.5 lg:gap-2">
             <Field icon={<TrendingUp size={10} />} label="WIN RATE" value={rawInputs.winRate} onChange={(v) => update('winRate', v)} suffix="%" />
             <Field icon={<Target size={10} />} label="RR RATIO" value={rawInputs.rrRatio} onChange={(v) => update('rrRatio', v)} suffix="R" />
           </div>
 
           {/* Kelly / RoR Results */}
-          <div className="glass rounded-lg p-2.5 neon-purple">
-            <div className="grid grid-cols-2 gap-3">
+          <div className="glass rounded-lg p-2 lg:p-2.5 neon-purple">
+            <div className="grid grid-cols-2 gap-2 lg:gap-3">
               <div className="flex flex-col gap-0.5">
                 <div className="flex items-center gap-1">
                   <Brain size={10} className="text-accent-purple" />
-                  <span className="font-mono text-[0.55rem] font-semibold text-white tracking-wider">KELLY CRITERION</span>
+                  <span className="font-mono text-[0.5rem] lg:text-[0.55rem] font-semibold text-white tracking-wider">KELLY CRITERION</span>
                   <InfoTooltip text="Suggests the optimal percentage of capital to risk per trade to maximize long-term growth. Formula: (WinRate × RR − LossRate) / RR" />
                 </div>
-                <span className="font-mono text-lg font-bold text-accent-purple">
+                <span className="font-mono text-base lg:text-lg font-bold text-accent-purple">
                   {(results.kelly * 100).toFixed(2)}%
                 </span>
-                <span className="font-mono text-[0.5rem] text-text-secondary">
+                <span className="font-mono text-[0.45rem] lg:text-[0.5rem] text-text-secondary">
                   Half Kelly: {(results.kelly * 50).toFixed(2)}%
                 </span>
               </div>
               <div className="flex flex-col gap-0.5">
                 <div className="flex items-center gap-1">
                   <AlertTriangle size={10} className="text-accent-amber" />
-                  <span className="font-mono text-[0.55rem] font-semibold text-white tracking-wider">RISK OF RUIN</span>
+                  <span className="font-mono text-[0.5rem] lg:text-[0.55rem] font-semibold text-white tracking-wider">RISK OF RUIN</span>
                   <InfoTooltip text="The statistical probability of losing your entire trading account based on current strategy performance and risk units" />
                 </div>
-                <span className={`font-mono text-lg font-bold ${rorColor}`}>
+                <span className={`font-mono text-base lg:text-lg font-bold ${rorColor}`}>
                   {rorDisplay}
                 </span>
-                <span className="font-mono text-[0.5rem] text-text-secondary">{rorLabel}</span>
+                <span className="font-mono text-[0.45rem] lg:text-[0.5rem] text-text-secondary">{rorLabel}</span>
               </div>
             </div>
           </div>
@@ -464,16 +464,16 @@ const RiskEngine = () => {
       </div>
 
       {/* ═══ 2. Technical Gauge — BITCOIN ONLY ═══ */}
-      <div className="flex-[4] flex flex-col overflow-hidden thin-border-b min-h-0">
-        <div className="flex items-center justify-between px-4 py-2.5 thin-border-b flex-shrink-0">
+      <div className="h-[300px] lg:h-auto lg:flex-[4] flex flex-col overflow-hidden thin-border-b min-h-0">
+        <div className="flex items-center justify-between px-2 lg:px-4 py-2 lg:py-2.5 thin-border-b flex-shrink-0">
           <div className="flex items-center gap-2">
             <Gauge size={13} style={{ color: '#F7931A' }} />
-            <span className="font-mono text-[0.75rem] font-bold tracking-[0.12em] uppercase"
+            <span className="font-mono text-[0.65rem] lg:text-[0.75rem] font-bold tracking-[0.12em] uppercase"
                   style={{ color: '#F7931A' }}>
               BITCOIN
             </span>
           </div>
-          <span className="font-mono text-[0.55rem] text-text-secondary pr-2">
+          <span className="font-mono text-[0.5rem] lg:text-[0.55rem] text-text-secondary pr-1 lg:pr-2">
             TECHNICAL GAUGE · RSI · MA · OSC
           </span>
         </div>
@@ -486,7 +486,7 @@ const RiskEngine = () => {
       </div>
 
       {/* ═══ 3. Bitcoin Sentiment — Richter Scale ═══ */}
-      <div className="flex-[2.5] flex flex-col overflow-hidden min-h-0">
+      <div className="min-h-[140px] lg:min-h-0 lg:flex-[2.5] flex flex-col overflow-hidden">
         <BitcoinSentiment />
       </div>
     </div>
@@ -557,7 +557,7 @@ const Field = ({ icon, label, value, onChange, suffix }) => (
   <div className="flex flex-col gap-1">
     <div className="flex items-center gap-1">
       <span className="text-text-secondary">{icon}</span>
-      <label className="font-mono text-[0.6rem] font-bold text-white tracking-wider">{label}</label>
+      <label className="font-mono text-[0.5rem] lg:text-[0.6rem] font-bold text-white tracking-wider">{label}</label>
     </div>
     <div className="relative">
       <input
@@ -574,7 +574,7 @@ const Field = ({ icon, label, value, onChange, suffix }) => (
         className="input-terminal pr-8"
       />
       {suffix && (
-        <span className="absolute right-2.5 top-1/2 -translate-y-1/2 font-mono text-[0.55rem] text-text-secondary pointer-events-none">
+        <span className="absolute right-2.5 top-1/2 -translate-y-1/2 font-mono text-[0.5rem] lg:text-[0.55rem] text-text-secondary pointer-events-none">
           {suffix}
         </span>
       )}
@@ -584,8 +584,8 @@ const Field = ({ icon, label, value, onChange, suffix }) => (
 
 const Stat = ({ label, value, color }) => (
   <div className="flex flex-col items-center gap-0.5">
-    <span className="font-mono text-[0.5rem] text-text-secondary tracking-wider">{label}</span>
-    <span className={`font-mono text-sm font-bold ${color}`}>{value}</span>
+    <span className="font-mono text-[0.45rem] lg:text-[0.5rem] text-text-secondary tracking-wider">{label}</span>
+    <span className={`font-mono text-xs lg:text-sm font-bold ${color}`}>{value}</span>
   </div>
 );
 
