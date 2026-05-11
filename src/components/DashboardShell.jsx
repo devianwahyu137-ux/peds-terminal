@@ -113,10 +113,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
       .toUpperCase();
 
   return (
-    <div
-      className="min-h-screen h-auto overflow-y-auto flex flex-col lg:h-screen lg:overflow-hidden bg-terminal-bg w-screen"
-      style={{ paddingTop: `${HEADER_H}px` }}
-    >
+    <div className="min-h-screen w-full bg-terminal-bg flex flex-col relative">
       {/* ── Sticky Top Bar ── */}
       <motion.header
         initial={{ y: -40, opacity: 0 }}
@@ -196,15 +193,21 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
 
       {/* ── Content: Responsive Layout ──
            Mobile: vertical stack (Chart > Risk > News), natural scroll
-           Desktop (lg+): 3-column grid (News | Chart | Risk), no scroll
+           Desktop (lg+): 3-column grid (News | Chart | Risk), natural scroll
       */}
-      <div className="flex-1 flex flex-col lg:grid lg:grid-cols-[1fr_2fr_1fr] lg:overflow-hidden lg:min-h-0">
+      <div 
+        className="flex-1 flex flex-col lg:grid lg:grid-cols-[1fr_2fr_1fr] overflow-y-auto"
+        style={{ 
+          paddingTop: `${HEADER_H}px`,
+          WebkitOverflowScrolling: 'touch'
+        }}
+      >
         {/* MarketVisualizer: Top on mobile, Center on desktop */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="min-h-0 thin-border-b lg:thin-border-b-0 lg:overflow-hidden order-1 lg:order-2"
+          className="min-h-0 thin-border-b lg:thin-border-b-0 order-1 lg:order-2"
         >
           <MarketVisualizer activeSymbol={activeSymbol} />
         </motion.div>
@@ -214,7 +217,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
           initial={{ x: 30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="min-h-0 thin-border-b lg:thin-border-b-0 lg:overflow-hidden order-2 lg:order-3"
+          className="min-h-0 thin-border-b lg:thin-border-b-0 order-2 lg:order-3"
           style={{ borderLeft: '0.5px solid rgba(255,255,255,0.06)' }}
         >
           <RiskEngine />
@@ -225,7 +228,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
           initial={{ x: -30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="min-h-0 lg:overflow-hidden lg:thin-border-r order-3 lg:order-1"
+          className="min-h-0 lg:thin-border-r order-3 lg:order-1"
         >
           <IntelligenceHub />
         </motion.div>
