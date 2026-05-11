@@ -163,11 +163,10 @@ const BitcoinSentiment = () => {
   return (
     <div className="flex flex-col gap-2">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6 md:mb-8 border-b border-neutral-800 pb-3 flex-shrink-0">
+      <div className="flex items-center justify-between border-b border-neutral-800 pb-3 mb-5 flex-shrink-0">
         <div className="flex items-center gap-2">
-          <Activity size={13} className="text-accent-amber" />
-          <span className="font-mono text-[10px] lg:text-[0.75rem] font-bold tracking-[0.12em] uppercase"
-                style={{ color: '#F7931A' }}>
+          <Activity size={13} className="text-emerald-500" />
+          <span className="text-emerald-500 font-mono tracking-widest uppercase text-[10px] lg:text-xs">
             BTC SENTIMENT
           </span>
         </div>
@@ -373,11 +372,11 @@ const RiskEngine = () => {
   return (
     <div className="h-auto flex flex-col space-y-10 lg:space-y-14 overflow-visible pb-8">
       {/* ═══ 1. Risk-Quant Engine ═══ */}
-      <div className="min-h-0 lg:flex-[5] flex flex-col bg-neutral-950/70 border border-neutral-800/60 rounded-xl p-5 md:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-        <div className="flex items-center justify-between mb-6 md:mb-8 border-b border-neutral-800 pb-3 flex-shrink-0">
+      <div className="min-h-0 lg:flex-[5] flex flex-col bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm">
+        <div className="flex items-center justify-between border-b border-neutral-800 pb-3 mb-5 flex-shrink-0">
           <div className="flex items-center gap-2">
-            <Calculator size={13} className="text-accent-blue" />
-            <span className="font-mono text-[10px] lg:text-[0.75rem] font-bold tracking-[0.12em] text-accent-blue uppercase">
+            <Calculator size={13} className="text-emerald-500" />
+            <span className="text-emerald-500 font-mono tracking-widest uppercase text-[10px] lg:text-xs">
               RISK-QUANT ENGINE
             </span>
           </div>
@@ -444,12 +443,11 @@ const RiskEngine = () => {
       </div>
 
       {/* ═══ 2. Technical Gauge (BITCOIN ONLY) ═══ */}
-      <div className="h-[300px] lg:h-auto lg:flex-[4] flex flex-col bg-neutral-950/70 border border-neutral-800/60 rounded-xl p-5 md:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] min-h-0">
-        <div className="flex items-center justify-between mb-6 md:mb-8 border-b border-neutral-800 pb-3 flex-shrink-0">
+      <div className="h-[300px] lg:h-auto lg:flex-[4] flex flex-col bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm min-h-0">
+        <div className="flex items-center justify-between border-b border-neutral-800 pb-3 mb-5 flex-shrink-0">
           <div className="flex items-center gap-2">
-            <Gauge size={13} style={{ color: '#F7931A' }} />
-            <span className="font-mono text-[10px] lg:text-[0.75rem] font-bold tracking-[0.12em] uppercase"
-                  style={{ color: '#F7931A' }}>
+            <Gauge size={13} className="text-emerald-500" />
+            <span className="text-emerald-500 font-mono tracking-widest uppercase text-[10px] lg:text-xs">
               BITCOIN
             </span>
           </div>
@@ -466,7 +464,7 @@ const RiskEngine = () => {
       </div>
 
       {/* ═══ 3. Bitcoin Sentiment (Richter Scale) ═══ */}
-      <div className="min-h-[140px] lg:min-h-0 lg:flex-[2.5] flex flex-col bg-neutral-950/70 border border-neutral-800/60 rounded-xl p-5 md:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] overflow-hidden">
+      <div className="min-h-[140px] lg:min-h-0 lg:flex-[2.5] flex flex-col bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm overflow-hidden">
         <BitcoinSentiment />
       </div>
     </div>

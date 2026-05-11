@@ -196,7 +196,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
            Desktop (lg+): 3-column grid (News | Chart | Risk), natural scroll
       */}
       <div 
-        className="flex-1 w-full flex flex-col lg:grid lg:grid-cols-[1fr_2fr_1fr] lg:gap-6 space-y-10 lg:space-y-0 overflow-y-visible pb-16 px-2 lg:px-4 scroll-smooth"
+        className="flex-1 w-full flex flex-col space-y-8 lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-6 p-4 lg:p-6 min-h-screen bg-black overflow-y-visible pb-16 scroll-smooth"
         style={{ 
           paddingTop: `${HEADER_H}px`,
           WebkitOverflowScrolling: 'touch'
@@ -207,7 +207,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="min-h-0 thin-border-b lg:thin-border-b-0 order-1 lg:order-2"
+          className="min-h-0 lg:col-span-6 order-1 lg:order-2"
         >
           <MarketVisualizer activeSymbol={activeSymbol} />
         </motion.div>
@@ -217,8 +217,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
           initial={{ x: 30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="min-h-0 thin-border-b lg:thin-border-b-0 order-2 lg:order-3"
-          style={{ borderLeft: '0.5px solid rgba(255,255,255,0.06)' }}
+          className="min-h-0 lg:col-span-3 order-2 lg:order-3"
         >
           <RiskEngine />
         </motion.div>
@@ -228,7 +227,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
           initial={{ x: -30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="min-h-0 lg:thin-border-r order-3 lg:order-1"
+          className="min-h-0 lg:col-span-3 order-3 lg:order-1"
         >
           <IntelligenceHub />
         </motion.div>

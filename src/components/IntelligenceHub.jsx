@@ -144,11 +144,11 @@ const IntelligenceHub = () => {
   return (
     <div className="h-auto flex flex-col space-y-10 lg:space-y-14 overflow-visible pb-8">
       {/* MACRO INTELLIGENCE */}
-      <div className="min-h-[200px] lg:min-h-0 lg:flex-[3] flex flex-col bg-neutral-950/70 border border-neutral-800/60 rounded-xl p-5 md:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-        <div className="flex items-center justify-between mb-6 md:mb-8 border-b border-neutral-800 pb-3 flex-shrink-0">
+      <div className="min-h-[200px] lg:min-h-0 lg:flex-[3] flex flex-col bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm">
+        <div className="flex items-center justify-between border-b border-neutral-800 pb-3 mb-5 flex-shrink-0">
           <div className="flex items-center gap-2 lg:gap-2.5">
-            <Newspaper size={15} className="text-accent-blue" />
-            <span className="font-mono text-[10px] lg:text-[0.8rem] font-extrabold tracking-[0.14em] uppercase text-accent-blue">MACRO INTELLIGENCE</span>
+            <Newspaper size={15} className="text-emerald-500" />
+            <span className="text-emerald-500 font-mono tracking-widest uppercase text-[10px] lg:text-xs">MACRO INTELLIGENCE</span>
           </div>
           <div className="flex items-center gap-2">
             {macro.lastUpdated && !macro.loading && (
@@ -198,11 +198,11 @@ const IntelligenceHub = () => {
 
 
       {/* CRYPTO NARRATIVES */}
-      <div className="min-h-[200px] lg:min-h-0 lg:flex-[3] flex flex-col bg-neutral-950/70 border border-neutral-800/60 rounded-xl p-5 md:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-        <div className="flex items-center justify-between mb-6 md:mb-8 border-b border-neutral-800 pb-3 flex-shrink-0">
+      <div className="min-h-[200px] lg:min-h-0 lg:flex-[3] flex flex-col bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm">
+        <div className="flex items-center justify-between border-b border-neutral-800 pb-3 mb-5 flex-shrink-0">
           <div className="flex items-center gap-2 lg:gap-2.5">
-            <TrendingUp size={15} className="text-accent-purple" />
-            <span className="font-mono text-[10px] lg:text-[0.8rem] font-extrabold tracking-[0.14em] uppercase text-accent-purple">CRYPTO NARRATIVES</span>
+            <TrendingUp size={15} className="text-emerald-500" />
+            <span className="text-emerald-500 font-mono tracking-widest uppercase text-[10px] lg:text-xs">CRYPTO NARRATIVES</span>
           </div>
           <div className="flex items-center gap-2">
             {crypto.loading && crypto.items.length === 0 && (
@@ -256,11 +256,11 @@ const IntelligenceHub = () => {
 
 
       {/* ECONOMIC CALENDAR */}
-      <div className="min-h-[300px] lg:min-h-0 lg:flex-[4] flex flex-col bg-neutral-950/70 border border-neutral-800/60 rounded-xl p-5 md:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] overflow-hidden">
-        <div className="flex items-center justify-between mb-6 md:mb-8 border-b border-neutral-800 pb-3 flex-shrink-0">
+      <div className="min-h-[300px] lg:min-h-0 lg:flex-[4] flex flex-col bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm overflow-hidden">
+        <div className="flex items-center justify-between border-b border-neutral-800 pb-3 mb-5 flex-shrink-0">
           <div className="flex items-center gap-2 lg:gap-2.5">
-            <Calendar size={15} className="text-accent-emerald" />
-            <span className="font-mono text-[10px] lg:text-[0.8rem] font-extrabold tracking-[0.14em] uppercase text-accent-emerald">ECONOMIC CALENDAR</span>
+            <Calendar size={15} className="text-emerald-500" />
+            <span className="text-emerald-500 font-mono tracking-widest uppercase text-[10px] lg:text-xs">ECONOMIC CALENDAR</span>
           </div>
           <span className="font-mono text-[10px] lg:text-[0.55rem] text-text-muted">HIGH IMPACT</span>
         </div>
