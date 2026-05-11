@@ -161,9 +161,9 @@ const BitcoinSentiment = () => {
   };
 
   return (
-    <div className="flex flex-col gap-2 px-3 lg:px-3 py-2.5">
+    <div className="flex flex-col gap-2">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between mb-6 md:mb-8 border-b border-neutral-800 pb-3 flex-shrink-0">
         <div className="flex items-center gap-2">
           <Activity size={13} className="text-accent-amber" />
           <span className="font-mono text-[10px] lg:text-[0.75rem] font-bold tracking-[0.12em] uppercase"
@@ -371,10 +371,10 @@ const RiskEngine = () => {
     : results.ror < 0.05 ? 'ELEVATED' : 'CRITICAL';
 
   return (
-    <div className="h-auto lg:h-full flex flex-col overflow-visible lg:overflow-hidden">
+    <div className="h-auto flex flex-col space-y-10 lg:space-y-14 overflow-visible pb-8">
       {/* ═══ 1. Risk-Quant Engine ═══ */}
-      <div className="min-h-0 lg:flex-[5] flex flex-col overflow-hidden thin-border-b">
-        <div className="flex items-center justify-between px-3 lg:px-4 py-2 lg:py-2.5 thin-border-b flex-shrink-0">
+      <div className="min-h-0 lg:flex-[5] flex flex-col bg-neutral-950/70 border border-neutral-800/60 rounded-xl p-5 md:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+        <div className="flex items-center justify-between mb-6 md:mb-8 border-b border-neutral-800 pb-3 flex-shrink-0">
           <div className="flex items-center gap-2">
             <Calculator size={13} className="text-accent-blue" />
             <span className="font-mono text-[10px] lg:text-[0.75rem] font-bold tracking-[0.12em] text-accent-blue uppercase">
@@ -444,8 +444,8 @@ const RiskEngine = () => {
       </div>
 
       {/* ═══ 2. Technical Gauge (BITCOIN ONLY) ═══ */}
-      <div className="h-[300px] lg:h-auto lg:flex-[4] flex flex-col overflow-hidden thin-border-b min-h-0">
-        <div className="flex items-center justify-between px-3 lg:px-4 py-2 lg:py-2.5 thin-border-b flex-shrink-0">
+      <div className="h-[300px] lg:h-auto lg:flex-[4] flex flex-col bg-neutral-950/70 border border-neutral-800/60 rounded-xl p-5 md:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] min-h-0">
+        <div className="flex items-center justify-between mb-6 md:mb-8 border-b border-neutral-800 pb-3 flex-shrink-0">
           <div className="flex items-center gap-2">
             <Gauge size={13} style={{ color: '#F7931A' }} />
             <span className="font-mono text-[10px] lg:text-[0.75rem] font-bold tracking-[0.12em] uppercase"
@@ -466,7 +466,7 @@ const RiskEngine = () => {
       </div>
 
       {/* ═══ 3. Bitcoin Sentiment (Richter Scale) ═══ */}
-      <div className="min-h-[140px] lg:min-h-0 lg:flex-[2.5] flex flex-col overflow-hidden">
+      <div className="min-h-[140px] lg:min-h-0 lg:flex-[2.5] flex flex-col bg-neutral-950/70 border border-neutral-800/60 rounded-xl p-5 md:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] overflow-hidden">
         <BitcoinSentiment />
       </div>
     </div>

@@ -142,10 +142,10 @@ const IntelligenceHub = () => {
   const macro = useAggregatedFeed(MACRO_FEEDS);
   const crypto = useAggregatedFeed(CRYPTO_FEEDS);
   return (
-    <div className="h-auto lg:h-full flex flex-col overflow-visible lg:overflow-hidden">
+    <div className="h-auto flex flex-col space-y-10 lg:space-y-14 overflow-visible pb-8">
       {/* MACRO INTELLIGENCE */}
-      <div className="min-h-[200px] lg:min-h-0 lg:flex-[3] flex flex-col overflow-visible lg:overflow-hidden">
-        <div className="flex items-center justify-between px-3 lg:px-4 py-2 lg:py-3 thin-border-b flex-shrink-0">
+      <div className="min-h-[200px] lg:min-h-0 lg:flex-[3] flex flex-col bg-neutral-950/70 border border-neutral-800/60 rounded-xl p-5 md:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+        <div className="flex items-center justify-between mb-6 md:mb-8 border-b border-neutral-800 pb-3 flex-shrink-0">
           <div className="flex items-center gap-2 lg:gap-2.5">
             <Newspaper size={15} className="text-accent-blue" />
             <span className="font-mono text-[10px] lg:text-[0.8rem] font-extrabold tracking-[0.14em] uppercase text-accent-blue">MACRO INTELLIGENCE</span>
@@ -195,13 +195,11 @@ const IntelligenceHub = () => {
         </div>
       </div>
 
-      <div className="px-3 lg:px-4 py-2 flex-shrink-0">
-        <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, transparent, rgba(168,85,247,0.35), transparent)' }} />
-      </div>
+
 
       {/* CRYPTO NARRATIVES */}
-      <div className="min-h-[200px] lg:min-h-0 lg:flex-[3] flex flex-col overflow-visible lg:overflow-hidden">
-        <div className="flex items-center justify-between px-3 lg:px-4 py-2 lg:py-3 thin-border-b flex-shrink-0">
+      <div className="min-h-[200px] lg:min-h-0 lg:flex-[3] flex flex-col bg-neutral-950/70 border border-neutral-800/60 rounded-xl p-5 md:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+        <div className="flex items-center justify-between mb-6 md:mb-8 border-b border-neutral-800 pb-3 flex-shrink-0">
           <div className="flex items-center gap-2 lg:gap-2.5">
             <TrendingUp size={15} className="text-accent-purple" />
             <span className="font-mono text-[10px] lg:text-[0.8rem] font-extrabold tracking-[0.14em] uppercase text-accent-purple">CRYPTO NARRATIVES</span>
@@ -255,13 +253,11 @@ const IntelligenceHub = () => {
         </div>
       </div>
 
-      <div className="px-3 lg:px-4 py-2 flex-shrink-0">
-        <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, transparent, rgba(16,185,129,0.35), transparent)' }} />
-      </div>
+
 
       {/* ECONOMIC CALENDAR */}
-      <div className="min-h-[300px] lg:min-h-0 lg:flex-[4] flex flex-col overflow-hidden pb-20 lg:pb-0">
-        <div className="flex items-center justify-between px-3 lg:px-4 py-2 lg:py-3 thin-border-b flex-shrink-0">
+      <div className="min-h-[300px] lg:min-h-0 lg:flex-[4] flex flex-col bg-neutral-950/70 border border-neutral-800/60 rounded-xl p-5 md:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] overflow-hidden">
+        <div className="flex items-center justify-between mb-6 md:mb-8 border-b border-neutral-800 pb-3 flex-shrink-0">
           <div className="flex items-center gap-2 lg:gap-2.5">
             <Calendar size={15} className="text-accent-emerald" />
             <span className="font-mono text-[10px] lg:text-[0.8rem] font-extrabold tracking-[0.14em] uppercase text-accent-emerald">ECONOMIC CALENDAR</span>
