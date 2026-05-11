@@ -196,7 +196,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
            Desktop (lg+): 3-column grid (News | Chart | Risk), natural scroll
       */}
       <div 
-        className="flex-1 flex flex-col lg:grid lg:grid-cols-[1fr_2fr_1fr] overflow-y-auto"
+        className="flex-1 min-h-0 flex flex-col lg:grid lg:grid-cols-[1fr_2fr_1fr] overflow-y-auto scroll-smooth"
         style={{ 
           paddingTop: `${HEADER_H}px`,
           WebkitOverflowScrolling: 'touch'

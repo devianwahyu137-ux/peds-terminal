@@ -203,7 +203,7 @@ const MarketVisualizer = ({ activeSymbol }) => {
       {/* ── Advanced Chart ──
            px-6 on mobile creates a "Safe Zone" for thumb scrolling
            without triggering TradingView chart drag/zoom */}
-      <div className="h-[500px] lg:h-[60vh] lg:flex-none flex flex-col overflow-hidden thin-border-b min-h-0">
+      <div className="h-[450px] lg:h-[550px] lg:flex-none flex flex-col overflow-hidden thin-border-b min-h-0">
         <div className="flex items-center justify-between px-3 lg:px-4 py-2 thin-border-b flex-shrink-0">
           <div className="flex items-center gap-2">
             <BarChart3 size={13} className="text-accent-blue" />
