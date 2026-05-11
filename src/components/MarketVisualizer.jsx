@@ -199,13 +199,14 @@ const MarketVisualizer = ({ activeSymbol }) => {
   const symbolLabel = activeSymbol.replace('USDT', '') + ' / USDT';
 
   return (
-    <div className="h-auto flex flex-col space-y-10 lg:space-y-14 overflow-visible pb-8">
+    <div className="flex flex-col gap-6 overflow-visible">
       {/* ── Advanced Chart ──
            px-6 on mobile creates a "Safe Zone" for thumb scrolling
            without triggering TradingView chart drag/zoom */}
-      <div className="h-[50vh] lg:flex-none flex flex-col bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm min-h-0">
-        <div className="flex items-center justify-between border-b border-neutral-800 pb-3 mb-5 flex-shrink-0">
+      <div className="h-[50vh] lg:flex-none flex flex-col bg-[#0A0A0A] border border-neutral-800/80 rounded-xl p-5 mb-6 shadow-2xl backdrop-blur-sm min-h-0">
+        <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2">
+            <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
             <BarChart3 size={13} className="text-emerald-500" />
             <span className="text-emerald-500 font-mono tracking-widest uppercase text-[10px] lg:text-xs">
               {symbolLabel}
@@ -222,9 +223,10 @@ const MarketVisualizer = ({ activeSymbol }) => {
       </div>
 
       {/* ── Crypto Sector Performance (Screener) ── */}
-      <div className="flex-1 h-auto flex flex-col bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm min-h-0">
-        <div className="flex items-center justify-between border-b border-neutral-800 pb-3 mb-5 flex-shrink-0">
+      <div className="flex-1 h-auto flex flex-col bg-[#0A0A0A] border border-neutral-800/80 rounded-xl p-5 mb-6 shadow-2xl backdrop-blur-sm min-h-0">
+        <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2">
+            <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
             <LayoutGrid size={12} className="text-emerald-500" />
             <span className="text-emerald-500 font-mono tracking-widest uppercase text-[10px] lg:text-xs">
               CRYPTO SECTOR PERFORMANCE
@@ -238,9 +240,10 @@ const MarketVisualizer = ({ activeSymbol }) => {
       </div>
 
       {/* ── Market Pulse Bar ── */}
-      <div className="flex-shrink-0 bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm" style={{ minHeight: '120px' }}>
-        <div className="flex items-center justify-between border-b border-neutral-800 pb-3 mb-5 flex-shrink-0">
+      <div className="flex-shrink-0 bg-[#0A0A0A] border border-neutral-800/80 rounded-xl p-5 mb-6 shadow-2xl backdrop-blur-sm" style={{ minHeight: '120px' }}>
+        <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2">
+            <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
             <Activity size={12} className="text-emerald-500" />
             <span className="text-emerald-500 font-mono tracking-widest uppercase text-[10px] lg:text-xs">
               MARKET PULSE

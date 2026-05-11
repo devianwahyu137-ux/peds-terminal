@@ -142,11 +142,12 @@ const IntelligenceHub = () => {
   const macro = useAggregatedFeed(MACRO_FEEDS);
   const crypto = useAggregatedFeed(CRYPTO_FEEDS);
   return (
-    <div className="h-auto flex flex-col space-y-10 lg:space-y-14 overflow-visible pb-8">
+    <div className="flex flex-col gap-6 overflow-visible">
       {/* MACRO INTELLIGENCE */}
-      <div className="min-h-[200px] lg:min-h-0 lg:flex-[3] flex flex-col bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm">
-        <div className="flex items-center justify-between border-b border-neutral-800 pb-3 mb-5 flex-shrink-0">
+      <div className="min-h-[200px] lg:min-h-0 lg:flex-[3] flex flex-col bg-[#0A0A0A] border border-neutral-800/80 rounded-xl p-5 mb-6 shadow-2xl backdrop-blur-sm">
+        <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2 lg:gap-2.5">
+            <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
             <Newspaper size={15} className="text-emerald-500" />
             <span className="text-emerald-500 font-mono tracking-widest uppercase text-[10px] lg:text-xs">MACRO INTELLIGENCE</span>
           </div>
@@ -198,9 +199,10 @@ const IntelligenceHub = () => {
 
 
       {/* CRYPTO NARRATIVES */}
-      <div className="min-h-[200px] lg:min-h-0 lg:flex-[3] flex flex-col bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm">
-        <div className="flex items-center justify-between border-b border-neutral-800 pb-3 mb-5 flex-shrink-0">
+      <div className="min-h-[200px] lg:min-h-0 lg:flex-[3] flex flex-col bg-[#0A0A0A] border border-neutral-800/80 rounded-xl p-5 mb-6 shadow-2xl backdrop-blur-sm">
+        <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2 lg:gap-2.5">
+            <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
             <TrendingUp size={15} className="text-emerald-500" />
             <span className="text-emerald-500 font-mono tracking-widest uppercase text-[10px] lg:text-xs">CRYPTO NARRATIVES</span>
           </div>
@@ -256,9 +258,10 @@ const IntelligenceHub = () => {
 
 
       {/* ECONOMIC CALENDAR */}
-      <div className="min-h-[300px] lg:min-h-0 lg:flex-[4] flex flex-col bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm overflow-hidden">
-        <div className="flex items-center justify-between border-b border-neutral-800 pb-3 mb-5 flex-shrink-0">
+      <div className="min-h-[300px] lg:min-h-0 lg:flex-[4] flex flex-col bg-[#0A0A0A] border border-neutral-800/80 rounded-xl p-5 mb-6 shadow-2xl backdrop-blur-sm overflow-hidden">
+        <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2 lg:gap-2.5">
+            <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
             <Calendar size={15} className="text-emerald-500" />
             <span className="text-emerald-500 font-mono tracking-widest uppercase text-[10px] lg:text-xs">ECONOMIC CALENDAR</span>
           </div>
