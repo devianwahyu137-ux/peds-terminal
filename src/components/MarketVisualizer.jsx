@@ -34,33 +34,7 @@ const AdvancedChartWidget = ({ symbol }) => {
   );
 };
 
-/* ═══════════════════════════════════════════
-   TRADINGVIEW: Crypto Screener
-   ═══════════════════════════════════════════ */
-const CryptoScreenerWidget = () => {
-  const containerRef = useRef(null);
-  useEffect(() => {
-    if (!containerRef.current) return;
-    const container = containerRef.current;
-    container.innerHTML = '';
-    const script = document.createElement('script');
-    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-screener.js';
-    script.type = 'text/javascript';
-    script.async = true;
-    script.innerHTML = JSON.stringify({
-      width: '100%', height: '100%', defaultColumn: 'overview',
-      screener_type: 'crypto_mkt', displayCurrency: 'USD',
-      colorTheme: 'dark', locale: 'en', isTransparent: true,
-    });
-    container.appendChild(script);
-    return () => { if (container) container.innerHTML = ''; };
-  }, []);
-  return (
-    <div className="tradingview-widget-container w-full h-full" ref={containerRef} title="Crypto Screener">
-      <div className="tradingview-widget-container__widget" style={{ height: '100%', width: '100%' }} />
-    </div>
-  );
-};
+const CryptoScreenerWidget = lazy(() => import('./CryptoScreenerWidget'));
 
 const MarketPulseBar = lazy(() => import('./MarketPulseBar'));
 
@@ -75,7 +49,7 @@ const MarketVisualizer = ({ activeSymbol }) => {
       {/* ── Advanced Chart ──
            px-6 on mobile creates a "Safe Zone" for thumb scrolling
            without triggering TradingView chart drag/zoom */}
-      <div className="h-[500px] lg:h-[600px] bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-5 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col">
+      <div className="min-h-[450px] lg:min-h-[550px] bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-5 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col" style={{ contentVisibility: 'auto', containIntrinsicSize: '550px' }}>
         <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2">
             <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
@@ -95,7 +69,7 @@ const MarketVisualizer = ({ activeSymbol }) => {
       </div>
 
       {/* ── Crypto Sector Performance (Screener) ── */}
-      <div className="h-[400px] lg:h-[500px] bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-5 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col">
+      <div className="h-[400px] lg:h-[500px] bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-5 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col" style={{ contentVisibility: 'auto', containIntrinsicSize: '500px' }}>
         <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2">
             <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
@@ -107,12 +81,14 @@ const MarketVisualizer = ({ activeSymbol }) => {
           <span className="font-mono text-[10px] lg:text-[0.5rem] text-text-muted">TOP MOVERS</span>
         </div>
         <div className="flex-1 min-h-0">
-          <CryptoScreenerWidget />
+          <Suspense fallback={<div className="h-40 bg-neutral-900 animate-pulse rounded-xl" />}>
+            <CryptoScreenerWidget />
+          </Suspense>
         </div>
       </div>
 
       {/* ── Market Pulse Bar ── */}
-      <div className="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-5 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col">
+      <div className="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-5 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col" style={{ contentVisibility: 'auto', containIntrinsicSize: '150px' }}>
         <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2">
             <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
