@@ -113,7 +113,8 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
       .toUpperCase();
 
   return (
-    <div className="min-h-screen w-full bg-terminal-bg flex flex-col relative">
+    <div className="min-h-screen w-full bg-black flex flex-col relative">
+      <div className="h-20 lg:h-28 w-full flex-shrink-0" />
       {/* ── Navigation Bar (Bottom on Mobile, Top on Desktop) ── */}
       <motion.header
         initial={{ y: 40, opacity: 0 }}
@@ -192,12 +193,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
       </motion.header>
 
       {/* ── Content: Responsive Layout ── */}
-      <div 
-        className="flex flex-col space-y-8 p-4 bg-black lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-6 lg:p-6 w-full overflow-y-visible pb-20 lg:pb-10 pt-[100px] lg:pt-[120px] scroll-smooth flex-1 relative"
-        style={{ 
-          WebkitOverflowScrolling: 'touch'
-        }}
-      >
+      <div className="w-full px-4 lg:px-6 lg:grid lg:grid-cols-12 lg:gap-6 lg:items-start">
         {/* MarketVisualizer: Center Column (lg:col-span-6) */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
@@ -230,8 +226,8 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
       </div>
 
       {/* ── Footer Credit ── */}
-      <footer className="w-full py-10 mt-12 border-t border-neutral-800/40 text-center">
-        <p className="text-neutral-500 text-xs tracking-[0.2em] font-mono uppercase">
+      <footer className="w-full py-12 mt-20 border-t border-neutral-800/40 text-center">
+        <p className="text-neutral-500 font-mono text-[10px] tracking-[0.3em] uppercase">
           © 2026 Devian Wahyu Nugroho. All rights reserved.
         </p>
       </footer>

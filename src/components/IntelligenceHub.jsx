@@ -118,9 +118,9 @@ const IntelligenceHub = () => {
   const macro = useAggregatedFeed(MACRO_FEEDS);
   const crypto = useAggregatedFeed(CRYPTO_FEEDS);
   return (
-    <div className="flex flex-col gap-6 overflow-visible w-full h-full">
+    <div className="flex flex-col overflow-visible w-full h-full">
       {/* MACRO INTELLIGENCE */}
-      <div className="bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col">
+      <div className="h-auto bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 mb-6 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col">
         <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2 lg:gap-2.5">
             <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
@@ -175,7 +175,7 @@ const IntelligenceHub = () => {
 
 
       {/* CRYPTO NARRATIVES */}
-      <div className="mt-auto bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col">
+      <div className="mt-auto h-auto bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 mb-6 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col">
         <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2 lg:gap-2.5">
             <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
