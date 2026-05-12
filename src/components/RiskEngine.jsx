@@ -13,6 +13,7 @@ import {
   OctagonX,
   Activity,
   Info,
+  Calendar,
 } from 'lucide-react';
 
 /* ═══════════════════════════════════════════
@@ -101,6 +102,33 @@ const TechGaugeWidget = () => {
   return (
     <div className="tradingview-widget-container w-full h-full" ref={containerRef}>
       <div className="tradingview-widget-container__widget" style={{ height: '100%', width: '100%' }} />
+    </div>
+  );
+};
+
+/* ═══════════════════════════════════════════
+   ECONOMIC CALENDAR
+   ═══════════════════════════════════════════ */
+const EconomicCalendarWidget = () => {
+  const containerRef = useRef(null);
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const container = containerRef.current;
+    container.innerHTML = '';
+    const script = document.createElement('script');
+    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-events.js';
+    script.type = 'text/javascript';
+    script.async = true;
+    script.innerHTML = JSON.stringify({
+      colorTheme: 'dark', isTransparent: true, width: '100%', height: '100%',
+      locale: 'en', importanceFilter: '0,1', countryFilter: 'us,eu,gb,jp,cn',
+    });
+    container.appendChild(script);
+    return () => { if (container) container.innerHTML = ''; };
+  }, []);
+  return (
+    <div className="tradingview-widget-container w-full h-full" ref={containerRef}>
+      <div className="tradingview-widget-container__widget" />
     </div>
   );
 };
@@ -371,7 +399,7 @@ const RiskEngine = () => {
     : results.ror < 0.05 ? 'ELEVATED' : 'CRITICAL';
 
   return (
-    <div className="flex flex-col space-y-6 overflow-visible w-full">
+    <div className="flex flex-col gap-6 overflow-visible w-full">
       {/* ═══ 1. Risk-Quant Engine ═══ */}
       <div className="bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col min-h-0">
         <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
@@ -469,6 +497,21 @@ const RiskEngine = () => {
       {/* ═══ 3. Bitcoin Sentiment (Richter Scale) ═══ */}
       <div className="bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col overflow-hidden">
         <BitcoinSentiment />
+      </div>
+
+      {/* ═══ 4. Economic Calendar ═══ */}
+      <div className="h-[400px] lg:h-[500px] bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col overflow-hidden">
+        <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
+          <div className="flex items-center gap-2 lg:gap-2.5">
+            <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
+            <Calendar size={15} className="text-emerald-500" />
+            <span className="text-emerald-500 font-mono tracking-widest uppercase text-[10px] lg:text-xs">ECONOMIC CALENDAR</span>
+          </div>
+          <span className="font-mono text-[10px] lg:text-[0.55rem] text-text-muted">HIGH IMPACT</span>
+        </div>
+        <div className="flex-1 overflow-hidden">
+          <EconomicCalendarWidget />
+        </div>
       </div>
     </div>
   );

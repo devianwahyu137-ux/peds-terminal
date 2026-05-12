@@ -199,7 +199,7 @@ const MarketVisualizer = ({ activeSymbol }) => {
   const symbolLabel = activeSymbol.replace('USDT', '') + ' / USDT';
 
   return (
-    <div className="flex flex-col space-y-6 overflow-visible w-full">
+    <div className="flex flex-col gap-6 overflow-visible w-full">
       {/* ── Advanced Chart ──
            px-6 on mobile creates a "Safe Zone" for thumb scrolling
            without triggering TradingView chart drag/zoom */}

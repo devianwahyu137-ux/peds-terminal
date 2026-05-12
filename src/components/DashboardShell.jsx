@@ -6,7 +6,7 @@ import MarketVisualizer from './MarketVisualizer';
 import RiskEngine from './RiskEngine';
 
 /* Header height constant for offset calculations */
-const HEADER_H = 44;
+const HEADER_H = 64;
 
 /* ═══════════════════════════════════════════
    SYMBOL DROPDOWN
@@ -119,9 +119,8 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="fixed bottom-0 lg:top-0 lg:bottom-auto left-0 right-0 z-50 flex items-center justify-between px-3 lg:px-5 flex-shrink-0"
+        className="fixed bottom-0 lg:top-0 lg:bottom-auto left-0 right-0 z-50 flex items-center justify-between px-3 lg:px-5 flex-shrink-0 h-16 lg:h-20"
         style={{
-          height: `${HEADER_H}px`,
           background: 'rgba(5,5,5,0.97)',
           borderTop: '0.5px solid rgba(255,255,255,0.06)',
           borderBottom: '0.5px solid rgba(255,255,255,0.06)',
@@ -194,7 +193,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
 
       {/* ── Content: Responsive Layout ── */}
       <div 
-        className="flex flex-col space-y-8 p-4 bg-black min-h-screen lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-6 lg:p-6 w-full overflow-y-visible pb-[60px] lg:pb-6 pt-4 lg:pt-[60px] scroll-smooth"
+        className="flex flex-col space-y-8 p-4 bg-black min-h-screen lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-6 lg:p-6 w-full overflow-y-visible pb-20 lg:pb-10 pt-20 lg:pt-24 scroll-smooth"
         style={{ 
           WebkitOverflowScrolling: 'touch'
         }}
@@ -204,7 +203,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="lg:col-span-6 space-y-6 flex flex-col order-1 lg:order-2 w-full min-h-0"
+          className="lg:col-span-6 flex flex-col gap-6 order-1 lg:order-2 w-full min-h-0"
         >
           <MarketVisualizer activeSymbol={activeSymbol} />
         </motion.div>
@@ -214,7 +213,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
           initial={{ x: 30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="lg:col-span-3 space-y-6 flex flex-col order-2 lg:order-3 w-full min-h-0"
+          className="lg:col-span-3 flex flex-col gap-6 order-2 lg:order-3 w-full min-h-0"
         >
           <RiskEngine />
         </motion.div>
@@ -224,7 +223,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
           initial={{ x: -30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="lg:col-span-3 space-y-6 flex flex-col order-3 lg:order-1 w-full min-h-0"
+          className="lg:col-span-3 flex flex-col gap-6 order-3 lg:order-1 w-full min-h-0"
         >
           <IntelligenceHub />
         </motion.div>
