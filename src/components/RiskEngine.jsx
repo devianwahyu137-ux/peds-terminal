@@ -399,9 +399,9 @@ const RiskEngine = () => {
     : results.ror < 0.05 ? 'ELEVATED' : 'CRITICAL';
 
   return (
-    <div className="flex flex-col overflow-visible w-full h-full">
+    <>
       {/* ═══ 1. Risk-Quant Engine ═══ */}
-      <div className="h-auto bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 mb-6 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col min-h-0">
+      <div className="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-5 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col min-h-0">
         <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2">
             <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
@@ -473,7 +473,7 @@ const RiskEngine = () => {
       </div>
 
       {/* ═══ 2. Technical Gauge (BITCOIN ONLY) ═══ */}
-      <div className="h-auto bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 mb-6 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col min-h-[300px]">
+      <div className="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-5 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col min-h-[300px]">
         <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-2 flex-shrink-0">
           <div className="flex items-center gap-2">
             <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
@@ -495,12 +495,12 @@ const RiskEngine = () => {
       </div>
 
       {/* ═══ 3. Bitcoin Sentiment (Richter Scale) ═══ */}
-      <div className="h-auto bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 mb-6 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col overflow-hidden">
+      <div className="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-5 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col overflow-hidden">
         <BitcoinSentiment />
       </div>
 
       {/* ═══ 4. Economic Calendar ═══ */}
-      <div className="mt-auto h-auto bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 mb-6 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col overflow-hidden min-h-[400px]">
+      <div className="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-5 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col overflow-hidden min-h-[400px]">
         <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2 lg:gap-2.5">
             <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
@@ -513,7 +513,7 @@ const RiskEngine = () => {
           <EconomicCalendarWidget />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

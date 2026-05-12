@@ -113,8 +113,8 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
       .toUpperCase();
 
   return (
-    <div className="min-h-screen w-full bg-black flex flex-col relative">
-      <div className="h-20 lg:h-28 w-full flex-shrink-0" />
+    <div className="min-h-screen w-full bg-black text-white selection:bg-emerald-500/30">
+      <div className="h-[80px] lg:h-[100px] w-full" />
       {/* ── Navigation Bar (Bottom on Mobile, Top on Desktop) ── */}
       <motion.header
         initial={{ y: 40, opacity: 0 }}
@@ -193,13 +193,23 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
       </motion.header>
 
       {/* ── Content: Responsive Layout ── */}
-      <div className="w-full px-4 lg:px-6 lg:grid lg:grid-cols-12 lg:gap-6 lg:items-start">
+      <div className="max-w-[1600px] mx-auto px-4 lg:px-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        {/* IntelligenceHub: Left Column (lg:col-span-3) */}
+        <motion.div
+          initial={{ x: -30, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="lg:col-span-3 space-y-6"
+        >
+          <IntelligenceHub />
+        </motion.div>
+
         {/* MarketVisualizer: Center Column (lg:col-span-6) */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="lg:col-span-6 flex flex-col gap-6 order-1 lg:order-2 w-full min-h-0"
+          className="lg:col-span-6 space-y-6"
         >
           <MarketVisualizer activeSymbol={activeSymbol} />
         </motion.div>
@@ -209,27 +219,15 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
           initial={{ x: 30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="lg:col-span-3 flex flex-col gap-6 order-2 lg:order-3 w-full min-h-0"
+          className="lg:col-span-3 space-y-6"
         >
           <RiskEngine />
-        </motion.div>
-
-        {/* IntelligenceHub: Left Column (lg:col-span-3) */}
-        <motion.div
-          initial={{ x: -30, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="lg:col-span-3 flex flex-col gap-6 order-3 lg:order-1 w-full min-h-0"
-        >
-          <IntelligenceHub />
         </motion.div>
       </div>
 
       {/* ── Footer Credit ── */}
-      <footer className="w-full py-12 mt-20 border-t border-neutral-800/40 text-center">
-        <p className="text-neutral-500 font-mono text-[10px] tracking-[0.3em] uppercase">
-          © 2026 Devian Wahyu Nugroho. All rights reserved.
-        </p>
+      <footer className="w-full py-10 mt-20 border-t border-neutral-800/40 text-center text-neutral-500 text-[10px] tracking-widest font-mono uppercase">
+        © 2026 Devian Wahyu Nugroho. All rights reserved.
       </footer>
     </div>
   );
