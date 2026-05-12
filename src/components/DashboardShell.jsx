@@ -113,7 +113,8 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
       .toUpperCase();
 
   return (
-    <div className="min-h-screen w-full bg-black text-white selection:bg-emerald-500/30 pt-[100px] lg:pt-[120px]">
+    <div className="min-h-screen w-full bg-black text-white selection:bg-emerald-500/30">
+      <div className="h-[90px] lg:h-[110px] w-full flex-shrink-0" />
       {/* ── Navigation Bar (Bottom on Mobile, Top on Desktop) ── */}
       <motion.header
         initial={{ y: 40, opacity: 0 }}
@@ -192,7 +193,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
       </motion.header>
 
       {/* ── Content: Responsive Layout ── */}
-      <div className="max-w-[1600px] mx-auto px-4 lg:px-6 flex flex-col space-y-8 lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-6 lg:items-start">
+      <div className="max-w-[1600px] mx-auto px-4 lg:px-6 pt-4 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* IntelligenceHub: Left Column (lg:col-span-3) */}
         <motion.div
           initial={{ x: -30, opacity: 0 }}
@@ -225,7 +226,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
       </div>
 
       {/* ── Footer Credit ── */}
-      <footer className="w-full py-10 mt-16 border-t border-neutral-800/40 text-center">
+      <footer className="w-full py-10 mt-20 border-t border-neutral-800/40 text-center">
         <p className="text-neutral-500 font-mono text-[10px] tracking-[0.3em] uppercase">
           © 2026 Devian Wahyu Nugroho. All rights reserved.
         </p>
