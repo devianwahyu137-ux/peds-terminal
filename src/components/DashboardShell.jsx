@@ -193,7 +193,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
 
       {/* ── Content: Responsive Layout ── */}
       <div 
-        className="flex flex-col space-y-8 p-4 bg-black lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-6 lg:p-6 w-full overflow-y-visible pb-20 lg:pb-10 pt-[80px] scroll-smooth flex-1"
+        className="flex flex-col space-y-8 p-4 bg-black lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-6 lg:p-6 w-full overflow-y-visible pb-20 lg:pb-10 pt-[100px] lg:pt-[120px] scroll-smooth flex-1 relative"
         style={{ 
           WebkitOverflowScrolling: 'touch'
         }}
@@ -230,8 +230,10 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
       </div>
 
       {/* ── Footer Credit ── */}
-      <footer className="w-full py-6 mt-10 border-t border-neutral-800/60 flex justify-center items-center text-neutral-500 text-xs tracking-widest font-mono">
-        &copy; 2026 Devian Wahyu Nugroho. All rights reserved.
+      <footer className="w-full py-10 mt-12 border-t border-neutral-800/40 text-center">
+        <p className="text-neutral-500 text-xs tracking-[0.2em] font-mono uppercase">
+          © 2026 Devian Wahyu Nugroho. All rights reserved.
+        </p>
       </footer>
     </div>
   );

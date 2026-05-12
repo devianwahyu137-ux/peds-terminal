@@ -191,7 +191,7 @@ const BitcoinSentiment = () => {
   return (
     <div className="flex flex-col gap-2">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
+      <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-2 flex-shrink-0">
         <div className="flex items-center gap-2">
           <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
           <Activity size={13} className="text-emerald-500" />
@@ -473,8 +473,8 @@ const RiskEngine = () => {
       </div>
 
       {/* ═══ 2. Technical Gauge (BITCOIN ONLY) ═══ */}
-      <div className="h-[220px] bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col min-h-0">
-        <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
+      <div className="bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col min-h-0">
+        <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-2 flex-shrink-0">
           <div className="flex items-center gap-2">
             <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
             <Gauge size={13} className="text-emerald-500" />
