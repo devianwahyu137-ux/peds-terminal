@@ -50,7 +50,7 @@ const SymbolDropdown = ({ symbols, activeSymbol, setActiveSymbol }) => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.95 }}
             transition={{ duration: 0.15 }}
-            className="absolute top-full left-0 mt-1 z-50 glass-elevated rounded-lg overflow-hidden min-w-[160px]"
+            className="absolute bottom-full lg:top-full lg:bottom-auto left-0 mb-1 lg:mt-1 lg:mb-0 z-50 glass-elevated rounded-lg overflow-hidden min-w-[160px]"
             style={{ border: '0.5px solid rgba(255,255,255,0.1)' }}
           >
             {symbols.map((s) => (
@@ -114,15 +114,16 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
 
   return (
     <div className="min-h-screen w-full bg-terminal-bg flex flex-col relative">
-      {/* ── Sticky Top Bar ── */}
+      {/* ── Navigation Bar (Bottom on Mobile, Top on Desktop) ── */}
       <motion.header
-        initial={{ y: -40, opacity: 0 }}
+        initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-3 lg:px-5 flex-shrink-0"
+        className="fixed bottom-0 lg:top-0 lg:bottom-auto left-0 right-0 z-50 flex items-center justify-between px-3 lg:px-5 flex-shrink-0"
         style={{
           height: `${HEADER_H}px`,
           background: 'rgba(5,5,5,0.97)',
+          borderTop: '0.5px solid rgba(255,255,255,0.06)',
           borderBottom: '0.5px solid rgba(255,255,255,0.06)',
           backdropFilter: 'blur(12px)',
         }}
@@ -191,43 +192,39 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
         </div>
       </motion.header>
 
-      {/* ── Content: Responsive Layout ──
-           Mobile: vertical stack (Chart > Risk > News), natural scroll
-           Desktop (lg+): 3-column grid (News | Chart | Risk), natural scroll
-      */}
+      {/* ── Content: Responsive Layout ── */}
       <div 
-        className="flex-1 w-full flex flex-col space-y-8 lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-6 p-4 lg:p-6 min-h-screen bg-black overflow-y-visible pb-16 scroll-smooth"
+        className="flex flex-col space-y-8 p-4 bg-black min-h-screen lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-6 lg:p-6 w-full overflow-y-visible pb-[60px] lg:pb-6 pt-4 lg:pt-[60px] scroll-smooth"
         style={{ 
-          paddingTop: `${HEADER_H}px`,
           WebkitOverflowScrolling: 'touch'
         }}
       >
-        {/* MarketVisualizer: Top on mobile, Center on desktop */}
+        {/* MarketVisualizer: Center Column (lg:col-span-6) */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="min-h-0 lg:col-span-6 order-1 lg:order-2"
+          className="lg:col-span-6 space-y-6 flex flex-col order-1 lg:order-2 w-full min-h-0"
         >
           <MarketVisualizer activeSymbol={activeSymbol} />
         </motion.div>
 
-        {/* RiskEngine: Middle on mobile, Right on desktop */}
+        {/* RiskEngine: Right Column (lg:col-span-3) */}
         <motion.div
           initial={{ x: 30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="min-h-0 lg:col-span-3 order-2 lg:order-3"
+          className="lg:col-span-3 space-y-6 flex flex-col order-2 lg:order-3 w-full min-h-0"
         >
           <RiskEngine />
         </motion.div>
 
-        {/* IntelligenceHub: Bottom on mobile, Left on desktop */}
+        {/* IntelligenceHub: Left Column (lg:col-span-3) */}
         <motion.div
           initial={{ x: -30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="min-h-0 lg:col-span-3 order-3 lg:order-1"
+          className="lg:col-span-3 space-y-6 flex flex-col order-3 lg:order-1 w-full min-h-0"
         >
           <IntelligenceHub />
         </motion.div>

@@ -371,9 +371,9 @@ const RiskEngine = () => {
     : results.ror < 0.05 ? 'ELEVATED' : 'CRITICAL';
 
   return (
-    <div className="flex flex-col gap-6 overflow-visible">
+    <div className="flex flex-col space-y-6 overflow-visible w-full">
       {/* ═══ 1. Risk-Quant Engine ═══ */}
-      <div className="min-h-0 lg:flex-[5] flex flex-col bg-[#0A0A0A] border border-neutral-800/80 rounded-xl p-5 mb-6 shadow-2xl backdrop-blur-sm">
+      <div className="bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col min-h-0">
         <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2">
             <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
@@ -445,7 +445,7 @@ const RiskEngine = () => {
       </div>
 
       {/* ═══ 2. Technical Gauge (BITCOIN ONLY) ═══ */}
-      <div className="h-[300px] lg:h-auto lg:flex-[4] flex flex-col bg-[#0A0A0A] border border-neutral-800/80 rounded-xl p-5 mb-6 shadow-2xl backdrop-blur-sm min-h-0">
+      <div className="h-[300px] lg:h-[400px] bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col min-h-0">
         <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2">
             <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
@@ -467,7 +467,7 @@ const RiskEngine = () => {
       </div>
 
       {/* ═══ 3. Bitcoin Sentiment (Richter Scale) ═══ */}
-      <div className="min-h-[140px] lg:min-h-0 lg:flex-[2.5] flex flex-col bg-[#0A0A0A] border border-neutral-800/80 rounded-xl p-5 mb-6 shadow-2xl backdrop-blur-sm overflow-hidden">
+      <div className="bg-neutral-900/40 border border-neutral-800/80 rounded-xl p-4 md:p-6 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col overflow-hidden">
         <BitcoinSentiment />
       </div>
     </div>
