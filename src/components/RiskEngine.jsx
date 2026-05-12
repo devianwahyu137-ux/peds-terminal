@@ -500,7 +500,7 @@ const RiskEngine = () => {
       </div>
 
       {/* ═══ 4. Economic Calendar ═══ */}
-      <div className="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-5 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors h-[750px] w-full flex flex-col overflow-visible pb-10">
+      <div className="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-5 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors h-auto w-full flex flex-col overflow-visible">
         <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2 lg:gap-2.5">
             <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
@@ -509,7 +509,7 @@ const RiskEngine = () => {
           </div>
           <span className="font-mono text-[10px] lg:text-[0.55rem] text-text-muted">HIGH IMPACT</span>
         </div>
-        <div className="flex-1 overflow-visible">
+        <div className="h-[420px] lg:h-[480px] overflow-y-auto overscroll-contain scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-transparent pr-2">
           <EconomicCalendarWidget />
         </div>
       </div>
