@@ -219,7 +219,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
           initial={{ x: 30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="lg:col-span-3 space-y-6 h-auto overflow-visible"
+          className="lg:col-span-3 flex flex-col gap-6 h-auto overflow-visible"
         >
           <RiskEngine />
         </motion.div>
