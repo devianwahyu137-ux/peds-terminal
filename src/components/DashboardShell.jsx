@@ -113,7 +113,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
       .toUpperCase();
 
   return (
-    <div className="flex flex-col min-h-screen bg-black overflow-x-hidden">
+    <div className="overflow-x-hidden flex flex-col min-h-screen bg-black">
       {/* ── Navigation Bar ── */}
       <motion.header
         initial={{ y: -40, opacity: 0 }}
@@ -191,10 +191,10 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
         </div>
       </motion.header>
       
-      <div className="h-24 lg:h-28 w-full block" aria-hidden="true" />
+      <div className="h-16 lg:h-24 w-full block" aria-hidden="true" />
 
       {/* ── Content: Responsive Layout ── */}
-      <main className="relative z-10 flex flex-col pt-2 lg:pt-0 w-full max-w-full lg:max-w-[1600px] mx-auto px-4 lg:px-6 lg:grid lg:grid-cols-12 lg:gap-6 items-start overflow-hidden">
+      <main className="relative z-10 w-full max-w-full mx-auto px-4 flex flex-col gap-6 lg:grid lg:grid-cols-12 items-center lg:items-start lg:px-6 overflow-hidden">
         {/* IntelligenceHub: Left Column (lg:col-span-3) */}
         <motion.div
           initial={{ x: -30, opacity: 0 }}
