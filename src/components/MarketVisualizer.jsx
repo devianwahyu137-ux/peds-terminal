@@ -49,7 +49,7 @@ const MarketVisualizer = ({ activeSymbol }) => {
       {/* ── Advanced Chart ──
            px-6 on mobile creates a "Safe Zone" for thumb scrolling
            without triggering TradingView chart drag/zoom */}
-      <div className="w-full min-h-[500px] lg:min-h-[600px] bg-neutral-900/20 rounded-xl overflow-hidden p-5 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors flex flex-col border border-neutral-800/60" style={{ contentVisibility: 'auto', containIntrinsicSize: '550px' }}>
+      <div className="w-full h-[500px] lg:h-[650px] min-h-[500px] bg-neutral-900/30 rounded-xl overflow-hidden relative border border-neutral-800/60 p-5 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors flex flex-col" style={{ contentVisibility: 'auto', containIntrinsicSize: '550px' }}>
         <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2">
             <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>

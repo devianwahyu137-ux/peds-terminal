@@ -191,10 +191,10 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
         </div>
       </motion.header>
       
-      <div className="h-[80px] lg:h-[100px] w-full flex-shrink-0" />
+      <div className="h-24 lg:h-28 w-full block" aria-hidden="true" />
 
       {/* ── Content: Responsive Layout ── */}
-      <main className="w-full px-4 lg:px-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <main className="relative z-10 flex flex-col pt-2 lg:pt-0 w-full px-4 lg:px-6 lg:grid lg:grid-cols-12 lg:gap-6 items-start">
         {/* IntelligenceHub: Left Column (lg:col-span-3) */}
         <motion.div
           initial={{ x: -30, opacity: 0 }}
