@@ -127,8 +127,8 @@ const EconomicCalendarWidget = () => {
     return () => { if (container) container.innerHTML = ''; };
   }, []);
   return (
-    <div className="tradingview-widget-container w-full h-full" ref={containerRef}>
-      <div className="tradingview-widget-container__widget" />
+    <div className="tradingview-widget-container w-full h-[600px]" ref={containerRef}>
+      <div className="tradingview-widget-container__widget" style={{ height: '100%', width: '100%' }} />
     </div>
   );
 };
@@ -500,7 +500,7 @@ const RiskEngine = () => {
       </div>
 
       {/* ═══ 4. Economic Calendar ═══ */}
-      <div className="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-5 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors w-full flex flex-col overflow-hidden min-h-[400px]">
+      <div className="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-5 shadow-2xl backdrop-blur-sm hover:border-emerald-500/30 transition-colors h-auto w-full flex flex-col overflow-visible pb-10">
         <div className="flex items-center justify-between border-b border-neutral-800/50 pb-2 mb-4 flex-shrink-0">
           <div className="flex items-center gap-2 lg:gap-2.5">
             <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
@@ -509,7 +509,7 @@ const RiskEngine = () => {
           </div>
           <span className="font-mono text-[10px] lg:text-[0.55rem] text-text-muted">HIGH IMPACT</span>
         </div>
-        <div className="flex-1 overflow-hidden">
+        <div className="flex-1 overflow-visible">
           <EconomicCalendarWidget />
         </div>
       </div>
