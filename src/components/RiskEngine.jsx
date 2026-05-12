@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Calculator,
@@ -100,38 +100,13 @@ const TechGaugeWidget = () => {
   }, []);
 
   return (
-    <div className="tradingview-widget-container w-full h-full" ref={containerRef}>
+    <div className="tradingview-widget-container w-full h-full" ref={containerRef} title="Technical Analysis Gauge">
       <div className="tradingview-widget-container__widget" style={{ height: '100%', width: '100%' }} />
     </div>
   );
 };
 
-/* ═══════════════════════════════════════════
-   ECONOMIC CALENDAR
-   ═══════════════════════════════════════════ */
-const EconomicCalendarWidget = () => {
-  const containerRef = useRef(null);
-  useEffect(() => {
-    if (!containerRef.current) return;
-    const container = containerRef.current;
-    container.innerHTML = '';
-    const script = document.createElement('script');
-    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-events.js';
-    script.type = 'text/javascript';
-    script.async = true;
-    script.innerHTML = JSON.stringify({
-      colorTheme: 'dark', isTransparent: true, width: '100%', height: '100%',
-      locale: 'en', importanceFilter: '0,1', countryFilter: 'us,eu,gb,jp,cn',
-    });
-    container.appendChild(script);
-    return () => { if (container) container.innerHTML = ''; };
-  }, []);
-  return (
-    <div className="tradingview-widget-container w-full h-full" ref={containerRef}>
-      <div className="tradingview-widget-container__widget" style={{ height: '100%', width: '100%' }} />
-    </div>
-  );
-};
+const EconomicCalendarWidget = lazy(() => import('./EconomicCalendarWidget'));
 
 /* ═══════════════════════════════════════════
    BITCOIN SENTIMENT (Richter Scale / Fear & Greed)
@@ -510,7 +485,9 @@ const RiskEngine = () => {
           <span className="font-mono text-[10px] lg:text-[0.55rem] text-text-muted">HIGH IMPACT</span>
         </div>
         <div className="h-[420px] lg:h-[480px] overflow-y-auto overscroll-contain scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-transparent pr-2">
-          <EconomicCalendarWidget />
+          <Suspense fallback={<div className="flex justify-center py-10 font-mono text-xs text-text-muted">LOADING CALENDAR...</div>}>
+            <EconomicCalendarWidget />
+          </Suspense>
         </div>
       </div>
     </>
@@ -576,15 +553,19 @@ const InfoTooltip = ({ text }) => {
 };
 
 /* Field: touch-friendly input with decimal inputMode */
-const Field = ({ icon, label, value, onChange, suffix }) => (
-  <div className="flex flex-col gap-1">
-    <div className="flex items-center gap-1">
-      <span className="text-text-secondary">{icon}</span>
-      <label className="font-mono text-[10px] lg:text-[0.6rem] font-bold text-white tracking-wider">{label}</label>
-    </div>
-    <div className="relative">
-      <input
-        type="text"
+const Field = ({ icon, label, value, onChange, suffix }) => {
+  const inputId = `input-${label.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}`;
+  return (
+    <div className="flex flex-col gap-1">
+      <div className="flex items-center gap-1">
+        <span className="text-text-secondary">{icon}</span>
+        <label htmlFor={inputId} className="font-mono text-[10px] lg:text-[0.6rem] font-bold text-white tracking-wider">{label}</label>
+      </div>
+      <div className="relative">
+        <input
+          id={inputId}
+          aria-label={label}
+          type="text"
         inputMode="decimal"
         value={value}
         onChange={(e) => {
@@ -602,8 +583,9 @@ const Field = ({ icon, label, value, onChange, suffix }) => (
         </span>
       )}
     </div>
-  </div>
-);
+    </div>
+  );
+};
 
 const Stat = ({ label, value, color }) => (
   <div className="flex flex-col items-center gap-0.5">
