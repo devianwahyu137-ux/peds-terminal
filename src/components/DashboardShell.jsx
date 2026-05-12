@@ -113,8 +113,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
       .toUpperCase();
 
   return (
-    <div className="min-h-screen w-full bg-black text-white selection:bg-emerald-500/30">
-      <div className="h-[70px] lg:h-[100px] w-full flex-shrink-0" />
+    <div className="flex flex-col min-h-screen bg-black">
       {/* ── Navigation Bar ── */}
       <motion.header
         initial={{ y: -40, opacity: 0 }}
@@ -191,9 +190,11 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
           </div>
         </div>
       </motion.header>
+      
+      <div className="h-[80px] lg:h-[100px] w-full flex-shrink-0" />
 
       {/* ── Content: Responsive Layout ── */}
-      <main className="flex flex-col pt-[100px] lg:pt-[120px] lg:grid lg:grid-cols-12 lg:gap-6">
+      <main className="w-full px-4 lg:px-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* IntelligenceHub: Left Column (lg:col-span-3) */}
         <motion.div
           initial={{ x: -30, opacity: 0 }}
@@ -226,7 +227,7 @@ const DashboardShell = ({ symbols, activeSymbol, setActiveSymbol }) => {
       </main>
 
       {/* ── Footer Credit ── */}
-      <footer className="w-full py-12 mt-16 border-t border-neutral-800/40 text-center">
+      <footer className="w-full py-12 mt-20 border-t border-neutral-800/40 text-center">
         <p className="text-neutral-500 font-mono text-[10px] tracking-[0.3em] uppercase">
           © 2026 Devian Wahyu Nugroho. All rights reserved.
         </p>
